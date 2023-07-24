@@ -1,5 +1,5 @@
 ---
-name: 'B2C Story: <Title>'
+name: B2C Grocery User Stories Template
 about: This template is an standard form of getthering user stories
 title: User Story
 labels: ''
