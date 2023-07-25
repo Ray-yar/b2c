@@ -1,0 +1,225 @@
+{% extends 'base.html' %} {% block content %}
+
+{% load crispy_forms_tags %}
+
+<div class="container">
+    <div class="card">
+        <div class="card-body">
+            <div class="row">
+                <div class="col-xl-6 col-lg-12 col-md-12 col-sm-12">
+                    <div class="white-box text-center">
+                        {% if "placeholder" in vehicle.featured_photo.url %}
+                        <img class="card-img-top" src="https://codeinstitute.s3.amazonaws.com/fullstack/blog/default.jpg"  alt="Vehicle Photo">
+                        {% else %}
+                        <img class="card-img-top" style="object-fit: cover;" src=" {{ vehicle.featured_photo.url }}"  alt="Vehicle Photo">
+                        {% endif %}
+                    </div>
+                </div>
+                <div class="col-xl-6 col-lg-12 col-md-12 col-sm-12">
+                    <h4 class="box-title mt-4">{{ vehicle.make }} {{vehicle.model}} {{ vehicle.year }}</h4>
+                    <p>{{ vehicle.content | safe }}</p>
+                    <table style="width:100%;font-size: 20px;">
+                        <tr>
+                            <td style="width:50%"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
+                                    fill="currentColor" class="bi bi-paint-bucket" viewBox="0 0 16 16">
+                                    <path
+                                        d="M6.192 2.78c-.458-.677-.927-1.248-1.35-1.643a2.972 2.972 0 0 0-.71-.515c-.217-.104-.56-.205-.882-.02-.367.213-.427.63-.43.896-.003.304.064.664.173 1.044.196.687.556 1.528 1.035 2.402L.752 8.22c-.277.277-.269.656-.218.918.055.283.187.593.36.903.348.627.92 1.361 1.626 2.068.707.707 1.441 1.278 2.068 1.626.31.173.62.305.903.36.262.05.64.059.918-.218l5.615-5.615c.118.257.092.512.05.939-.03.292-.068.665-.073 1.176v.123h.003a1 1 0 0 0 1.993 0H14v-.057a1.01 1.01 0 0 0-.004-.117c-.055-1.25-.7-2.738-1.86-3.494a4.322 4.322 0 0 0-.211-.434c-.349-.626-.92-1.36-1.627-2.067-.707-.707-1.441-1.279-2.068-1.627-.31-.172-.62-.304-.903-.36-.262-.05-.64-.058-.918.219l-.217.216zM4.16 1.867c.381.356.844.922 1.311 1.632l-.704.705c-.382-.727-.66-1.402-.813-1.938a3.283 3.283 0 0 1-.131-.673c.091.061.204.15.337.274zm.394 3.965c.54.852 1.107 1.567 1.607 2.033a.5.5 0 1 0 .682-.732c-.453-.422-1.017-1.136-1.564-2.027l1.088-1.088c.054.12.115.243.183.365.349.627.92 1.361 1.627 2.068.706.707 1.44 1.278 2.068 1.626.122.068.244.13.365.183l-4.861 4.862a.571.571 0 0 1-.068-.01c-.137-.027-.342-.104-.608-.252-.524-.292-1.186-.8-1.846-1.46-.66-.66-1.168-1.32-1.46-1.846-.147-.265-.225-.47-.251-.607a.573.573 0 0 1-.01-.068l3.048-3.047zm2.87-1.935a2.44 2.44 0 0 1-.241-.561c.135.033.324.11.562.241.524.292 1.186.8 1.846 1.46.45.45.83.901 1.118 1.31a3.497 3.497 0 0 0-1.066.091 11.27 11.27 0 0 1-.76-.694c-.66-.66-1.167-1.322-1.458-1.847z" />
+                                </svg>
+                                {{ vehicle.color }}</td>
+                            <td>
+                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor"
+                                    class="bi bi-gear" viewBox="0 0 16 16">
+                                    <path
+                                        d="M8 4.754a3.246 3.246 0 1 0 0 6.492 3.246 3.246 0 0 0 0-6.492zM5.754 8a2.246 2.246 0 1 1 4.492 0 2.246 2.246 0 0 1-4.492 0z" />
+                                    <path
+                                        d="M9.796 1.343c-.527-1.79-3.065-1.79-3.592 0l-.094.319a.873.873 0 0 1-1.255.52l-.292-.16c-1.64-.892-3.433.902-2.54 2.541l.159.292a.873.873 0 0 1-.52 1.255l-.319.094c-1.79.527-1.79 3.065 0 3.592l.319.094a.873.873 0 0 1 .52 1.255l-.16.292c-.892 1.64.901 3.434 2.541 2.54l.292-.159a.873.873 0 0 1 1.255.52l.094.319c.527 1.79 3.065 1.79 3.592 0l.094-.319a.873.873 0 0 1 1.255-.52l.292.16c1.64.893 3.434-.902 2.54-2.541l-.159-.292a.873.873 0 0 1 .52-1.255l.319-.094c1.79-.527 1.79-3.065 0-3.592l-.319-.094a.873.873 0 0 1-.52-1.255l.16-.292c.893-1.64-.902-3.433-2.541-2.54l-.292.159a.873.873 0 0 1-1.255-.52l-.094-.319zm-2.633.283c.246-.835 1.428-.835 1.674 0l.094.319a1.873 1.873 0 0 0 2.693 1.115l.291-.16c.764-.415 1.6.42 1.184 1.185l-.159.292a1.873 1.873 0 0 0 1.116 2.692l.318.094c.835.246.835 1.428 0 1.674l-.319.094a1.873 1.873 0 0 0-1.115 2.693l.16.291c.415.764-.42 1.6-1.185 1.184l-.291-.159a1.873 1.873 0 0 0-2.693 1.116l-.094.318c-.246.835-1.428.835-1.674 0l-.094-.319a1.873 1.873 0 0 0-2.692-1.115l-.292.16c-.764.415-1.6-.42-1.184-1.185l.159-.291A1.873 1.873 0 0 0 1.945 8.93l-.319-.094c-.835-.246-.835-1.428 0-1.674l.319-.094A1.873 1.873 0 0 0 3.06 4.377l-.16-.292c-.415-.764.42-1.6 1.185-1.184l.292.159a1.873 1.873 0 0 0 2.692-1.115l.094-.319z" />
+                                </svg>
+                                {{ vehicle.transmission }}
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor"
+                                    class="bi bi-speedometer" viewBox="0 0 16 16">
+                                    <path
+                                        d="M8 2a.5.5 0 0 1 .5.5V4a.5.5 0 0 1-1 0V2.5A.5.5 0 0 1 8 2zM3.732 3.732a.5.5 0 0 1 .707 0l.915.914a.5.5 0 1 1-.708.708l-.914-.915a.5.5 0 0 1 0-.707zM2 8a.5.5 0 0 1 .5-.5h1.586a.5.5 0 0 1 0 1H2.5A.5.5 0 0 1 2 8zm9.5 0a.5.5 0 0 1 .5-.5h1.5a.5.5 0 0 1 0 1H12a.5.5 0 0 1-.5-.5zm.754-4.246a.389.389 0 0 0-.527-.02L7.547 7.31A.91.91 0 1 0 8.85 8.569l3.434-4.297a.389.389 0 0 0-.029-.518z" />
+                                    <path fill-rule="evenodd"
+                                        d="M6.664 15.889A8 8 0 1 1 9.336.11a8 8 0 0 1-2.672 15.78zm-4.665-4.283A11.945 11.945 0 0 1 8 10c2.186 0 4.236.585 6.001 1.606a7 7 0 1 0-12.002 0z" />
+                                </svg>
+                                {{ vehicle.milage }}
+                            </td>
+                            <td>
+                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor"
+                                    class="bi bi-fuel-pump" viewBox="0 0 16 16">
+                                    <path
+                                        d="M3 2.5a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 .5.5v5a.5.5 0 0 1-.5.5h-5a.5.5 0 0 1-.5-.5v-5Z" />
+                                    <path
+                                        d="M1 2a2 2 0 0 1 2-2h6a2 2 0 0 1 2 2v8a2 2 0 0 1 2 2v.5a.5.5 0 0 0 1 0V8h-.5a.5.5 0 0 1-.5-.5V4.375a.5.5 0 0 1 .5-.5h1.495c-.011-.476-.053-.894-.201-1.222a.97.97 0 0 0-.394-.458c-.184-.11-.464-.195-.9-.195a.5.5 0 0 1 0-1c.564 0 1.034.11 1.412.336.383.228.634.551.794.907.295.655.294 1.465.294 2.081v3.175a.5.5 0 0 1-.5.501H15v4.5a1.5 1.5 0 0 1-3 0V12a1 1 0 0 0-1-1v4h.5a.5.5 0 0 1 0 1H.5a.5.5 0 0 1 0-1H1V2Zm9 0a1 1 0 0 0-1-1H3a1 1 0 0 0-1 1v13h8V2Z" />
+                                </svg>
+                                {{ vehicle.fuel }}
+                            </td>
+                        </tr>
+                    </table>
+                    <h2 class="mt-4 mb-4">
+                        Price ${{ vehicle.price }}
+                        <small class="text-danger">
+                            <del>
+                                ${{ vehicle.reg_price }}
+                            </del>
+                        </small>
+                    </h2>
+                    <a href="mailto:{{ vehicle.user.email }}" class="btn btn-primary btn-rounded">
+                        <i class="fa fa-envelope"></i>
+                        Mail Seller
+                    </a>
+                </div>
+                <div class="col-lg-12 col-md-12 col-sm-12">
+                    <h3 class="box-title mt-5">General Features</h3>
+                    <div class="table-responsive">
+                        <table class="table table-striped table-product">
+                            <tbody>
+                                <tr>
+                                    <td style="width:50%">Make</td>
+                                    <td>{{ vehicle.make }}</td>
+                                </tr>
+                                <tr>
+                                    <td style="width:50%">Model</td>
+                                    <td>{{ vehicle.model }}</td>
+                                </tr>
+                                <tr>
+                                    <td style="width:50%">Color</td>
+                                    <td>{{ vehicle.color }}</td>
+                                </tr>
+                                <tr>
+                                    <td style="width:50%">Body Type</td>
+                                    <td>{{ vehicle.body }}</td>
+                                </tr>
+                                <tr>
+                                    <td style="width:50%">Year Model</td>
+                                    <td>{{ vehicle.year }}</td>
+                                </tr>
+                                <tr>
+                                    <td style="width:50%">Fuel Type</td>
+                                    <td>{{ vehicle.fuel }}</td>
+                                </tr>
+                                <tr>
+                                    <td style="width:50%">Milage</td>
+                                    <td>{{ vehicle.milage }} miles</td>
+                                </tr>
+                                <tr>
+                                    <td style="width:50%">Transmission</td>
+                                    <td>{{ vehicle.transmission }}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="col-lg-6 col-md-6 col-sm-12">
+                    <h3 class="box-title mt-5">Review List</h3>
+                    <div class="container">
+                        <div class="row">
+                            {% for review in reviews %}
+                            <div class="col-md-12 mt-3">
+                                <div class="media g-mb-30 media-comment">
+                                    <div class="media-body u-shadow-v18 g-bg-secondary g-pa-30">
+                                        <div class="g-mb-15">
+                                            <h5 class="h5 g-color-gray-dark-v1 mb-0">{{review.title}}</h5>
+                                        </div>
+                                        <p class="text-muted mt-2">
+                                            {{review.text}}
+                                        </p>
+                                        {% if user.is_authenticated and user == review.user %}
+                                            <button class="btn btn-sm btn-primary edit-button" data-review-id="{{ review.id }}" data-review-title="{{ review.title }}" data-review-text="{{ review.text }}"><i class="fa fa-edit"></i></button>
+                                            <button class="btn btn-danger btn-sm delete-button" data-review-id="{{ review.id }}"><i class="fa fa-trash"></i></button>
+                                        {% endif %}
+                                    </div>
+                                </div>
+                                <hr>
+                            </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-6 col-md-6 col-sm-12">
+                    <h3 class="box-title mt-5">Add review</h3>
+                    {% if commented %}
+                    <p>We are reviewing your comment then we will release it!</p>
+                    {% else %}
+                    {% if user.is_authenticated %}
+                    <form method="post" class="form-group" id="review_form">
+                        <input type="hidden" id="id" name="id" value="">
+                        {{ review_form | crispy }}
+                        {% csrf_token %}
+                        <button class="btn btn-success mt-3 col-md-4" id="submit_btn" type="submit">Save</button>
+                    </form>
+                    {% endif %}
+                    {% if user.is_authenticated is False %}
+                        <p>Please <a href="{% url 'account_login' %}">login</a> to add your review</p>
+                    {% endif %}
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+<script>
+
+// Function to send the DELETE request
+function deleteReview(reviewId) {
+    fetch(`/review/${reviewId}/delete/`, {
+        method: 'DELETE',
+        headers: {
+            'X-CSRFToken': getCookie('csrftoken')
+        },
+    })
+    .then(response => {
+        if (response.ok) {
+            window.location.reload();
+        } else {
+            console.error('Failed to delete review.');
+        }
+    })
+    .catch(error => {
+        console.error('Error during review deletion:', error);
+    });
+}
+
+// Function to get the CSRF token from the cookie
+function getCookie(name) {
+    const value = `; ${document.cookie}`;
+    const parts = value.split(`; ${name}=`);
+    if (parts.length === 2) return parts.pop().split(';').shift();
+}
+
+
+$(document).ready(function(){
+
+    // Handle Edit Button Click Event
+    $(".edit-button").click(function(){
+        
+        // Get Data
+        reviewId = $(this).attr('data-review-id');
+        reviewTitle = $(this).attr('data-review-title');
+        reviewText = $(this).attr('data-review-text');
+
+        // Set Fetched Data
+        $("#id").val(reviewId);
+        $("#id_title").val(reviewTitle);
+        $("#id_text").val(reviewText);
+        
+    });
+
+    // Handle Delete Button Event
+    $(".delete-button").click(function(){
+        reviewId = $(this).attr('data-review-id');
+        deleteReview(reviewId);
+    }); 
+}); 
+</script>
+
+
+{% endblock content %}
