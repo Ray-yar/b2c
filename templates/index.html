@@ -2,4 +2,59 @@
 
 {% block content %}
 
+<style>
+    .rating {
+        --mdb-rating-icon-padding: 0.25rem;
+        display: flex;
+        margin: 0;
+        padding: 0;
+    }
+
+    .rating li {
+        list-style: none;
+    }
+
+    .rating i {
+        padding: var(--mdb-rating-icon-padding);
+    }
+</style>
+
+<div class="container p-5 text-center">
+    <h3 class="mb-2">
+        Featured Products
+    </h3>
+    <p>Discover our handpicked selection of top-rated products. From premium gadgets to stylish accessories, our
+        featured products showcase the very best our store has to offer. Each item is carefully curated to provide you
+        with an exceptional shopping experience. Explore our featured products and elevate your lifestyle today!</p>
+    <div class="row">
+        {% for x in "12345678" %}
+        <div class="col-md-3 mt-4">
+            <div class="card text-start">
+                <div class="bg-image hover-overlay ripple rounded-0" data-mdb-ripple-color="light">
+                    <img class="img-fluid" src="https://mdbootstrap.com/img/Photos/Horizontal/Food/full page/2.jpg"
+                        alt="Card image cap" />
+                    <a href="#!">
+                        <div class="mask" style="background-color: rgba(251, 251, 251, 0.15);"></div>
+                    </a>
+                </div>
+                <div class="card-body">
+                    <h5 class="card-title font-weight-bold">New spicy meals</h5>
+                    <h6 class="text-muted">Category</h6>
+                    <h5>$ 21.09</h5>
+                    <div class="d-flex justify-content-between">
+                        <button class="btn btn-outline-success btn-sm"> Read More</button>
+                        <div>
+                            <i class="fas fa-shopping-cart text-muted p-md-1 my-1 me-2" data-mdb-toggle="tooltip"
+                            data-mdb-placement="top" title="Add to cart"></i>
+                            <i class="fas fa-heart text-muted p-md-1 my-1 me-0" data-mdb-toggle="tooltip"
+                            data-mdb-placement="top" title="Add to wishlist"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+
 {%endblock%}
