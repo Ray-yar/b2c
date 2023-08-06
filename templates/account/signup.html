@@ -1,53 +1,27 @@
 {% extends "base.html" %}
-
 {% load i18n %}
-
 {% block head_title %}{% trans "Signup" %}{% endblock %}
-
 {% block content %}
-
-<br>
-<br>
-<br>
-<br>
-<br>
-
-<div class="container">
-  <div class="row justify-content-center">
-    <div class="col-xl-8 col-lg-10 col-md-12 col-sm-12">
-      <div class="card-group mb-0">
-        <div class="card p-4">
-          <div class="card-body">
-            <h1>{% trans "Sign Up" %}</h1>
-            <p class="text-muted">Sign Up as a new account</p>
-            <form class="signup" id="signup_form" method="post" action="{% url 'account_signup' %}">
-              {% csrf_token %}
-              {{ form.as_p }}
-              {% if redirect_field_value %}
-              <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
-              {% endif %}
-              <button class="btn btn-success active" type="submit">{% trans "Sign Up" %} &raquo;</button>
-            </form>
-          </div>
-        </div>
-        <div class=" card text-white bg-primary py-5 d-md-down-none">
-          <div class="card-body text-center">
-            <div>
-              <h2>Sign In</h2>
-              <p>
-                {% blocktrans %}
-                  Thank you for your interest in signing up with us! If you have already an account then 
-                  please visit our login page to access your account and explore our services.
-                {% endblocktrans %}
-              </p>
-              <a href="{% url 'account_login' %}" class="btn btn-primary active mt-3">Sign In!</a>
-            </div>
-          </div>
+<div class="container vh-100 d-flex justify-content-center align-items-center">
+  <div class="row justify-content-center col-xl-4 col-lg-4 col-md-4 col-sm-12">
+    <div class="card-group mb-0">
+      <div class="card p-2">
+        <div class="card-body">
+          <h3>{% trans "Sign Up" %}</h3>
+          <form class="signup form-group" id="signup_form" method="post" action="{% url 'account_signup' %}">
+            {% csrf_token %}
+            {{ form.as_p }}
+            {% if redirect_field_value %}
+            <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
+            {% endif %}
+            <button class="btn btn-success active form-control mt-2" type="submit">{% trans "Sign Up" %}
+              &raquo;</button>
+            <hr>
+            <a href="{% url 'account_login' %}" class="btn btn-primary active col-12" class="form-control">Sign In</a>
+          </form>
         </div>
       </div>
     </div>
   </div>
 </div>
-
 {% endblock %}
-
