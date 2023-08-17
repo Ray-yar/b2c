@@ -28,7 +28,7 @@ SECRET_KEY = 'django-insecure-jq012s6y9oy#(&4t^xjj7x)kma1^5#8$lo0*n!9_4tnj(hvw62
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['8000-rayyar-b2c-l3sivjh2wy9.ws-us102.gitpod.io', 'localhost', '127.0.0.0', '8000-rayyar-b2c-qfxd9yuty2s.ws-us102.gitpod.io']
+ALLOWED_HOSTS = ['localhost', '127.0.0.0', '8000-rayyar-b2c-4srcbpr8ie5.ws-us104.gitpod.io']
 
 
 # Application definition
@@ -55,7 +55,7 @@ ACCOUNT_EMAIL_VERIFICATION = 'mandatory'
 ACCOUNT_SIGNUP_EMAIL_ENTER_TWICE = True
 ACCOUNT_USERNAME_MIN_LENGTH = 4
 LOGIN_URL = '/accounts/login/'
-LOGIN_REDIRECT_URL = '/success'
+LOGIN_REDIRECT_URL = '/'
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
