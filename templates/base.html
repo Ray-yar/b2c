@@ -11,8 +11,9 @@
     <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" rel="stylesheet" />
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-    
+
 </head>
+
 <body>
     <nav class="navbar navbar-inverse navbar-fixed-top">
         <div class="container-fluid">
@@ -46,6 +47,13 @@
                 </div>
             </form>
             <div class="nav navbar-nav navbar-right" style="margin-right: 15px;">
+                {% if user.is_authenticated %}
+                {% if user.is_superuser %}
+                <a class="btn btn-primary navbar-btn" target="_blank" href="{% url 'admin:index' %}">
+                    <i class="fas fa-home"></i>
+                </a>
+                {% endif %}
+                {% endif %}
                 <a href="{% url 'checkout_url' %}" class="btn btn-info navbar-btn">
                     <i class="fas fa-shopping-cart"></i>
                 </a>
