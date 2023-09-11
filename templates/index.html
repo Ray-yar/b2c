@@ -1,5 +1,44 @@
 {% extends "base.html" %}
 {% block content %}
 
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-12 mt-3 left">
+            <div class="row">
+                {% for pro in product_list %}
+                <div class="card col-sm-6 col-md-4 col-lg-3">
+                    {% if "placeholder" in pro.featured_photo.url %}
+                    <img class="card-img-top" src="https://codeinstitute.s3.amazonaws.com/fullstack/blog/default.jpg"
+                        alt="Vehicle Photo">
+                    {% else %}
+                    <img class="card-img-top" style="height: 230px;object-fit: cover;"
+                        src=" {{ pro.featured_photo.url }}" alt="Vehicle Photo">
+                    {% endif %}
+
+                    <div class="card-body">
+                        <a href="http://"><h3 class="card-title">{{pro.title}}</h3></a>
+                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of
+                            the card's content.</p>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+    {% if is_paginated %}
+    <nav aria-label="Page navigation" class="mt-5">
+        <ul class="pagination justify-content-center">
+            {% if page_obj.has_previous %}
+            <li><a href="?page={{ page_obj.previous_page_number }}" class="page-link">&laquo; PREV </a></li>
+            {% endif %}
+            {% if page_obj.has_next %}
+            <li><a href="?page={{ page_obj.next_page_number }}" class="page-link"> NEXT &raquo;</a></li>
+
+            {% endif %}
+        </ul>
+    </nav>
+    {% endif %}
+
+</div>
 
 {%endblock%}
