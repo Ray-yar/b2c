@@ -2,6 +2,13 @@ from django.db import models
 from django.contrib.auth.models import User
 from cloudinary.models import CloudinaryField
 
+class Category(models.Model):
+    title = models.CharField(max_length=128, blank=False)
+    created_by = models.ForeignKey(User, on_delete=models.CASCADE, default=2)
+    
+    def __str__(self):
+        return self.title
+
 class Product(models.Model):
     title = models.CharField(max_length=128, blank=False)
     desc = models.TextField(blank=False)
@@ -16,16 +23,7 @@ class Product(models.Model):
         ordering = ['created_at']
 
     def __str__(self):
-        return f"{self.title}"
-
-
-class Category(models.Model):
-    title = models.CharField(max_length=128, blank=False)
-    created_by = models.ForeignKey(User, on_delete=models.CASCADE, default=2)
-    
-    def __str__(self):
-        return self.title
-   
+        return f"{self.title}"   
 
 class Contact(models.Model):
     subject = models.CharField(max_length=100, blank=False)
@@ -34,3 +32,13 @@ class Contact(models.Model):
     
     def __str__(self):
         return self.subject
+
+class Review(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    vcl = models.ForeignKey(Product, on_delete=models.CASCADE, related_name='reviews', default=1)
+    title = models.CharField(max_length=100)
+    text = models.TextField()
+    approved = models.BooleanField(default=0)
+
+    def __str__(self):
+        return self.title
