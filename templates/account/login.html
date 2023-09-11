@@ -1,24 +1,24 @@
 {% extends "base.html" %}
 {% load i18n %}
-{% load account socialaccount %}
-{% block head_title %}{% trans "Sign In" %}{% endblock %}
 {% block content %}
-<div class="container-fluid vh-100 d-flex justify-content-center align-items-center">
-  <div class="row justify-content-center col-xl-4 col-lg-4 col-md-4 col-sm-12">
-    <div class="card-group mb-0">
-      <div class="card p-2">
-        <div class="card-body">
-          <h3>{% trans "Sign In" %}</h3>
-          <form class="login form" method="POST" action="{% url 'account_login' %}">
-            {% csrf_token %}
-            {{ form.as_p }}
-            {% if redirect_field_value %}
-            <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}">
-            {% endif %}
-            <button class="btn btn-success active col-md-12" type="submit">{% trans "Sign In" %}</button>
-            <hr>
-            <a href="{% url 'account_signup' %}" class="btn btn-primary active col-md-12">Create Account</a>
-          </form>
+<div class="container-fluid d-flex justify-content-center align-items-center vh-100">
+  <div class="row justify-content-center">
+    <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12">
+      <div class="card-group mb-0">
+        <div class="card p-2">
+          <div class="card-body">
+            <h3>{% trans "Sign In" %}</h3>
+            <form class="login form" method="POST" action="{% url 'account_login' %}">
+              {% csrf_token %}
+              {{ form.as_p }}
+              {% if redirect_field_value %}
+              <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}">
+              {% endif %}
+              <button class="btn btn-success active col-md-12" type="submit">{% trans "Sign In" %}</button>
+              <hr>
+              <a href="{% url 'account_signup' %}" class="btn btn-primary active col-md-12">Create Account</a>
+            </form>
+          </div>
         </div>
       </div>
     </div>
