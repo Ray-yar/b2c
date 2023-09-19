@@ -30,21 +30,19 @@
             <li class="nav-item"><a class="nav-link" href="{% url 'about_us_url' %}">About Us</a></li>
             <li class="nav-item"><a class="nav-link" href="{% url 'contact_us_url' %}">Contact Us</a></li>
         </ul>
-        <form class="navbar-form navbar-left col-md-6" action="/action_page.php">
+        <form class="navbar-form navbar-left col-md-6" method="GET" action="">
+            <input type="hidden" id="category" name="category" value="">
             <div class="input-group">
                 <div class="input-group-prepend">
                     <button class="btn btn-outline-secondary dropdown-toggle" type="button" data-toggle="dropdown"
-                        aria-haspopup="true" aria-expanded="false">All Categories</button>
+                        aria-haspopup="true" aria-expanded="false">Select Category</button>
                     <div class="dropdown-menu">
-                        <a class="dropdown-item" href="#">Action</a>
-                        <a class="dropdown-item" href="#">Another action</a>
-                        <a class="dropdown-item" href="#">Something else here</a>
-                        <div role="separator" class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="#">Separated link</a>
+                        {% for cat in categories %}
+                            <a class="dropdown-item" class="category-class">{{ cat.title }}</a>
+                        {% endfor %}
                     </div>
                 </div>
-                <input type="text" class="form-control" placeholder="Search..."
-                    aria-label="Text input with dropdown button">
+                <input type="text" class="form-control" placeholder="Search..." name="search"">
                 <div class="input-group-append">
                     <button class="btn btn-outline-secondary"><i class="fa fa-search"></i></button>
                 </div>
@@ -115,6 +113,11 @@
             for (var i = 0; i < elementsToStyle.length; i++) {
                 elementsToStyle[i].classList.add("form-control");
             }
+        });
+        $document.ready(function(){
+            $(".category-class").click(function(){
+                var id = $(this).attr("id");
+            })
         });
     </script>
 </body>
