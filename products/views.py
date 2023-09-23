@@ -8,28 +8,25 @@ from .models import Product, Category
 def all_products(request):
     
     products = Product.objects.all()
-    query = None
-    categories = None
+    selected_query = None
+    selected_category = None
+    categories = Category.objects.all()
 
-    # if request.GET:
-    #     if 'category' in request.GET:
-    #         categories = request.GET['category'].split(',')
-    #         products = products.filter(category__title__in=categories)
-    #         categories = Category.objects.filter(title__in=categories)
-
-    #     if 'q' in request.GET:
-    #         query = request.GET['q']
-    #         if not query:
-    #             messages.error(request, "You didn't enter any search criteria!")
-    #             return redirect(reverse(''))
-            
-    #         queries = Q(title__icontains=query) | Q(desc__icontains=query)
-    #         products = products.filter(queries)
+    if request.GET:
+        if 'category' in request.GET or 'q' in request.GET:
+            selected_query = request.GET['q']
+            selected_category = request.GET['category']
+            if selected_category:
+                products = products.filter(id=selected_category)
+            if selected_query:
+                queries = Q(title__icontains=selected_query) | Q(desc__icontains=selected_query)
+                products = products.filter(queries)
 
     context = {
         'products': products,
-        'search_term': query,
         'categories': categories,
+        'selected_category': selected_category,
+        'selected_query': selected_query
     }
     return render(request, 'index.html', context)
 
