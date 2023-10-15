@@ -52,6 +52,7 @@ INSTALLED_APPS = [
     'django_summernote',
     'crispy_forms',
     'products',
+    'checkout',
 ]
 
 SITE_ID = 1
@@ -79,6 +80,7 @@ ROOT_URLCONF = 'grocery.urls'
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 TEMPLATES_DIR = os.path.join(BASE_DIR, 'templates')
+CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
 TEMPLATES = [
     {
@@ -92,6 +94,10 @@ TEMPLATES = [
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
             ],
+            'builtins': [
+                'crispy_forms.templatetags.crispy_forms_tags',
+                'crispy_forms.templatetags.crispy_forms_field',
+            ]
         },
     },
 ]
