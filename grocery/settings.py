@@ -53,6 +53,7 @@ INSTALLED_APPS = [
     'crispy_forms',
     'products',
     'checkout',
+    'bag',
 ]
 
 SITE_ID = 1
@@ -164,3 +165,6 @@ DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+FREE_DELIVERY_THRESHOLD = 50
+STANDARD_DELIVERY_PERCENTAGE = 10
