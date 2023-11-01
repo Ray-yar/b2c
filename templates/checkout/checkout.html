@@ -1,0 +1,81 @@
+{% extends "base.html" %}
+
+{% load crispy_forms_tags %}
+
+
+{% block content %}
+<div class="overlay"></div>
+<div class="container card p-4 mt-2 mb-2">
+    <div class="row">
+        <div class="col">
+            <h3 class="logo-font mb-2">Checkout</h3>
+            <hr>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-12 col-lg-6 order-lg-last mb-5">
+            {% for item in bag_items %}
+            <div class="row">
+                <div class="col-2 mb-1">
+                    <a href="{% url 'product_details_url' item.product.id %}">
+                        {% if item.product.featured_photo %}
+                        <img class="w-100" src="{{ item.product.featured_photo.url }}" alt="{{ product.title }}">
+                        {% else %}
+                        <img class="w-100" src="{{ MEDIA_URL }}noimage.png" alt="{{ product.title }}">
+                        {% endif %}
+                    </a>
+                </div>
+                <div class="col-7">
+                    <p class="my-0"><strong>{{ item.product.title }}</strong></p>
+                    <p class="my-0 small text-muted">Amount: {{ item.quantity }}</p>
+                </div>
+                <div class="col-3 text-right">
+                    <p class="my-0 small text-muted">${{ item.product.price }}</p>
+                </div>
+            </div>
+            {% endfor %}
+            <hr class="my-0">
+            <div class="row text-black text-right">
+                <div class="col-7 offset-2">
+                    <p class="my-0">Total:</p>
+                </div>
+                <div class="col-3">
+                    <p class="my-0">${{ total | floatformat:2 }}</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-12 col-lg-6">
+            <form action="{% url 'checkout' %}" method="POST" id="payment-form">
+                {% csrf_token %}
+                {{ order_form.full_name | as_crispy_field }}
+                {{ order_form.email | as_crispy_field }}
+                {{ order_form.phone_number | as_crispy_field }}
+                {{ order_form.country | as_crispy_field }}
+                {{ order_form.postcode | as_crispy_field }}
+                {{ order_form.town_or_city | as_crispy_field }}
+                {{ order_form.street_address1 | as_crispy_field }}
+                {{ order_form.street_address2 | as_crispy_field }}
+                {{ order_form.county | as_crispy_field }}
+
+                <div class="submit-button text-right mt-2 mb-2">
+                    <div class="row px-3">
+                        <a href="{% url 'view_bag' %}" class="btn btn-outline-secondary col-md-6">
+                            <span class="icon">
+                                <i class="fas fa-shopping-cart"></i>
+                            </span>
+                            <span class="font-weight-bold">Shopping Bag</span>
+                        </a>
+                        <button id="submit-button" class="btn btn-secondary col-md-6">
+                            <span class="font-weight-bold">Complete Order</span>
+                            <span class="icon">
+                                <i class="fas fa-lock"></i>
+                            </span>
+                        </button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}

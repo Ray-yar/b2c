@@ -51,6 +51,7 @@ INSTALLED_APPS = [
     'cloudinary',
     'django_summernote',
     'crispy_forms',
+    'crispy_bootstrap4',
     'products',
     'checkout',
     'bag',
@@ -58,6 +59,7 @@ INSTALLED_APPS = [
 
 SITE_ID = 1
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+CSRF_TRUSTED_ORIGINS = ['https://8000-rayyar-b2c-rg3sxah8e1j.ws-us105.gitpod.io']
 
 ACCOUNT_AUTHENTICATION_METHOD = 'username_email'
 ACCOUNT_EMAIL_REQUIRED = True
