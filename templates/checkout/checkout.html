@@ -43,6 +43,14 @@
         color: #000;
         border: 1px solid #000;
     }
+
+    .loading-spinner {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0;
+        height: 100%;
+    }
 </style>
 
 <div class="overlay"></div>
@@ -124,5 +132,12 @@
             </form>
         </div>
     </div>
+</div>
+<div id="loading-overlay">
+    <h1 class="text-light logo-font loading-spinner">
+        <span class="icon">
+            <i class="fas fa-3x fa-sync-alt fa-spin"></i>
+        </span>
+    </h1>
 </div>
 {% endblock %}
