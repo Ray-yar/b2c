@@ -30,22 +30,7 @@
             <li class="nav-item"><a class="nav-link" href="{% url 'about_us_url' %}">About Us</a></li>
             <li class="nav-item"><a class="nav-link" href="{% url 'contact_us_url' %}">Contact Us</a></li>
         </ul>
-        <form class="navbar-form navbar-left col-md-6" method="GET" action="">
-            <div class="input-group">
-                <div class="input-group-prepend">
-                    <select class="btn btn-outline-secondary" name="category" id="category">
-                        <option value="">Select Category</option>
-                        {% for cat in categories %}
-                            <option value="{{ cat.id }}" {% if cat.id == selected_category %}selected{% endif %}>{{ cat.title }}</option>
-                        {% endfor %}
-                    </select>
-                </div>
-                <input type="text" class="form-control" value="{% if selected_query %} {{ selected_query }} {% endif %}" placeholder="Search..." name="q">
-                <div class=" input-group-append">
-                    <button class="btn btn-outline-secondary" type="submit"><i class="fa fa-search"></i></button>
-                </div>
-            </div>
-        </form>
+
         <ul class="nav nav-pills">
             <li class="nav-item">
                 {% if user.is_authenticated %}
@@ -57,8 +42,7 @@
                 {% endif %}
             </li>
             <li class="nav-item">
-                <a href="/bag/" class="btn btn-info navbar-btn mr-1"> <i
-                        class="fas fa-shopping-cart"></i></a>
+                <a href="/bag/" class="btn btn-info navbar-btn mr-1"> <i class="fas fa-shopping-cart"></i></a>
             </li>
             <li class="nav-item">
                 <a href="{% url 'wishlist_url' %}" class="btn btn-danger navbar-btn mr-1"> <i
@@ -95,6 +79,10 @@
             <i class="fab fa-youtube-square ms-3"></i>
         </p>
     </footer>
+    
+    {{ block.super }}
+    {{ stripe_public_key|json_script:"id_stripe_public_key" }}
+    {{ client_secret|json_script:"id_client_secret" }}
 
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
         integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
@@ -105,18 +93,86 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js"
         integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
         crossorigin="anonymous"></script>
+    <!-- Stripe -->
+    <script src="https://js.stripe.com/v3/"></script>
+
+    <script>
+        var stripePublicKey = $('#id_stripe_public_key').text().slice(1, -1);
+        var clientSecret = $('#id_client_secret').text().slice(1, -1);
+        var stripe = Stripe("pk_test_51LMq8JAI7UrJoeevg1IPejymJSUsycrfL9bFC1IB20MlA1gKIm03B5UnZGOQb3on4TMUeoPws1lP8QSJdHsJlscL00FLU2IMV1");
+        var elements = stripe.elements();
+        var style = {
+            base: {
+                color: '#000',
+                fontFamily: '"Helvetica Neue", Helvetica, sans-serif',
+                fontSmoothing: 'antialiased',
+                fontSize: '16px',
+                '::placeholder': {
+                    color: '#aab7c4'
+                }
+            },
+            invalid: {
+                color: '#dc3545',
+                iconColor: '#dc3545'
+            }
+        };
+        var card = elements.create('card', { style: style });
+        card.mount('#card-element');
+
+
+        // Handle realtime validation errors on the card element
+        card.addEventListener('change', function (event) {
+            var errorDiv = document.getElementById('card-errors');
+            if (event.error) {
+                var html = `
+            <span class="icon" role="alert">
+                <i class="fas fa-times"></i>
+            </span>
+            <span>${event.error.message}</span>
+        `;
+                $(errorDiv).html(html);
+            } else {
+                errorDiv.textContent = '';
+            }
+        });
+
+        // Handle form submit
+        var form = document.getElementById('payment-form');
+
+        form.addEventListener('submit', function (ev) {
+            ev.preventDefault();
+            card.update({ 'disabled': true });
+            $('#submit-button').attr('disabled', true);
+            stripe.confirmCardPayment(clientSecret, {
+                payment_method: {
+                    card: card,
+                }
+            }).then(function (result) {
+                if (result.error) {
+                    var errorDiv = document.getElementById('card-errors');
+                    var html = `
+                <span class="icon" role="alert">
+                <i class="fas fa-times"></i>
+                </span>
+                <span>${result.error.message}</span>`;
+                    $(errorDiv).html(html);
+                    card.update({ 'disabled': false });
+                    $('#submit-button').attr('disabled', false);
+                } else {
+                    if (result.paymentIntent.status === 'succeeded') {
+                        form.submit();
+                    }
+                }
+            });
+        });
+    </script>
+
     <script>
         document.addEventListener("DOMContentLoaded", function () {
             var elementsToStyle = document.querySelectorAll("input[type='text'], input[type='password'], input[type='email'], textarea");
             for (var i = 0; i < elementsToStyle.length; i++) {
                 elementsToStyle[i].classList.add("form-control");
             }
-        });
-        $document.ready(function () {
-            $(".category-class").click(function () {
-                alert("123");
-                var id = $(this).attr("id");
-            })
         });
     </script>
 </body>
