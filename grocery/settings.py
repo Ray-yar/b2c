@@ -31,7 +31,7 @@ SECRET_KEY = os.environ.get('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['localhost', '127.0.0.1', '8000-rayyar-b2c-zn8l3hf3jwt.ws-us105.gitpod.io']
+ALLOWED_HOSTS = ['localhost', '127.0.0.1', '8000-rayyar-b2c-uljy38dbeqd.ws-us105.gitpod.io']
 
 
 # Application definition
@@ -59,7 +59,7 @@ INSTALLED_APPS = [
 
 SITE_ID = 1
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
-CSRF_TRUSTED_ORIGINS = ['https://8000-rayyar-b2c-rg3sxah8e1j.ws-us105.gitpod.io']
+CSRF_TRUSTED_ORIGINS = ['https://8000-rayyar-b2c-uljy38dbeqd.ws-us105.gitpod.io']
 
 ACCOUNT_AUTHENTICATION_METHOD = 'username_email'
 ACCOUNT_EMAIL_REQUIRED = True
