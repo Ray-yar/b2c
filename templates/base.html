@@ -25,11 +25,30 @@
     <nav class="navbar navbar-light bg-light">
         <a class="navbar-brand" href="#">B2C</a>
         <ul class="nav nav-pills">
-            <li class="nav-item active"><a class="nav-link" href="{% url 'base_url' %}">Home</a></li>
-            <li class="nav-item"><a class="nav-link" href="{% url 'products_url' %}">Products</a></li>
+            <li class="nav-item"><a class="nav-link" href="{% url 'products_url' %}">Shop</a></li>
             <li class="nav-item"><a class="nav-link" href="{% url 'about_us_url' %}">About Us</a></li>
             <li class="nav-item"><a class="nav-link" href="{% url 'contact_us_url' %}">Contact Us</a></li>
         </ul>
+
+        <form class="navbar-form navbar-left col-md-6" method="GET" action="">
+            <div class="input-group">
+                <div class="input-group-prepend">
+
+                    <select class="btn btn-outline-secondary" name="category" id="category">
+                        <option value="">Select Category</option>
+                        {% for cat in categories %}
+                        <option value="{{ cat.id }}">{{ cat.title }}</option>
+                        {% endfor %}
+                    </select>
+
+                </div>
+                <input type="text" class="form-control" value="{% if selected_query %}{{ selected_query }}{% endif %}"
+                    placeholder="Search..." name="q">
+                <div class="input-group-append">
+                    <button class="btn btn-outline-secondary" type="submit"><i class="fa fa-search"></i></button>
+                </div>
+            </div>
+        </form>
 
         <ul class="nav nav-pills">
             <li class="nav-item">
@@ -64,20 +83,41 @@
         </ul>
     </nav>
 
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8 offset-md-2">
+                {% for message in messages %}
+                <div class="alert {{ message.tags }} alert-dismissible fade show mt-3" id="msg" role="alert">
+                    {{ message | safe }}
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+
     <main>
         {% block content %}
         <!-- Content Goes here -->
         {% endblock content %}
     </main>
 
-    <!-- Footer -->
-    <footer class="footer mt-auto py-3 bg-light">
-        <p class="m-0 text-center">Made By Rohullah Ahmadyar</p>
-        <p class="m-0 text-center">Follow us: <i class="fab fa-facebook-square ms-3"></i>
-            <i class="fab fa-twitter-square ms-3"></i>
-            <i class="fab fa-instagram-square ms-3"></i>
-            <i class="fab fa-youtube-square ms-3"></i>
-        </p>
+    <!-- Improved Footer -->
+    <footer class="footer mt-auto py-3 bg-white">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12 text-center">
+                    <p class="m-0">Made with ❤️ by Rohullah Ahmadyar</p>
+                    <p class="m-0 social-icons">
+                        Follow us:
+                        <a href="#" class="social-icon"><i class="fab fa-facebook-square"></i></a>
+                        <a href="#" class="social-icon"><i class="fab fa-twitter-square"></i></a>
+                        <a href="#" class="social-icon"><i class="fab fa-instagram-square"></i></a>
+                        <a href="#" class="social-icon"><i class="fab fa-youtube-square"></i></a>
+                    </p>
+                </div>
+            </div>
+        </div>
     </footer>
 
     {{ block.super }}
@@ -176,6 +216,11 @@
                 elementsToStyle[i].classList.add("form-control");
             }
         });
+        setTimeout(function () {
+            let messages = document.getElementById('msg');
+            let alert = new bootstrap.Alert(messages);
+            alert.close();
+        }, 5000);
     </script>
 </body>
 
