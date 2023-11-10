@@ -23,7 +23,7 @@
 
 <body>
     <nav class="navbar navbar-light bg-light">
-        <a class="navbar-brand" href="#">B2C</a>
+        <a class="navbar-brand" href="#"> <strong> B2C </strong> </a>
         <ul class="nav nav-pills">
             <li class="nav-item"><a class="nav-link" href="{% url 'products_url' %}">Shop</a></li>
             <li class="nav-item"><a class="nav-link" href="{% url 'about_us_url' %}">About Us</a></li>
@@ -34,7 +34,7 @@
             <div class="input-group">
                 <div class="input-group-prepend">
 
-                    <select class="btn btn-outline-secondary" name="category" id="category">
+                    <select class="btn btn-outline-secondary text-left" name="category" id="category">
                         <option value="">Select Category</option>
                         {% for cat in categories %}
                         <option value="{{ cat.id }}">{{ cat.title }}</option>
@@ -102,23 +102,39 @@
         {% endblock content %}
     </main>
 
-    <!-- Improved Footer -->
-    <footer class="footer mt-auto py-3 bg-white">
+    <!-- Extended Footer -->
+    <footer class="footer mt-auto py-4 bg-white">
         <div class="container">
             <div class="row">
-                <div class="col-md-12 text-center">
-                    <p class="m-0">Made with ❤️ by Rohullah Ahmadyar</p>
-                    <p class="m-0 social-icons">
-                        Follow us:
-                        <a href="#" class="social-icon"><i class="fab fa-facebook-square"></i></a>
-                        <a href="#" class="social-icon"><i class="fab fa-twitter-square"></i></a>
-                        <a href="#" class="social-icon"><i class="fab fa-instagram-square"></i></a>
-                        <a href="#" class="social-icon"><i class="fab fa-youtube-square"></i></a>
-                    </p>
+                <div class="col-md-4">
+                    <h5>Contact Us</h5>
+                    <p>Email: info@b2c.com</p>
+                    <p>Phone: +937 979 846 48</p>
+                </div>
+                <div class="col-md-4 text-md-right">
+                    <div class="col-md-12 text-center">
+                        <p class="m-0">Made with ❤️ by Rohullah Ahmadyar</p>
+                        <p class="m-0 social-icons">
+                            Follow us:
+                            <a href="#" class="social-icon"><i class="fab fa-facebook-square"></i></a>
+                            <a href="#" class="social-icon"><i class="fab fa-twitter-square"></i></a>
+                            <a href="#" class="social-icon"><i class="fab fa-instagram-square"></i></a>
+                            <a href="#" class="social-icon"><i class="fab fa-youtube-square"></i></a>
+                        </p>
+                    </div>
+                </div>
+                <div class="col-md-4 text-right">
+                    <h5>Quick Links</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="{% url 'products_url' %}">Products</a></li>
+                        <li><a href="{% url 'about_us_url' %}">About Us</a></li>
+                        <li><a href="{% url 'contact_us_url' %}">Contact</a></li>
+                    </ul>
                 </div>
             </div>
         </div>
     </footer>
+
 
     {{ block.super }}
     {{ stripe_public_key|json_script:"id_stripe_public_key" }}

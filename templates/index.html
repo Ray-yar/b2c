@@ -1,6 +1,19 @@
 {% extends "base.html" %}
 {% block content %}
 
+<!-- Image Slider -->
+<div id="homeSlider" class="carousel slide" data-ride="carousel">
+    <div class="carousel-inner">
+        <div class="carousel-item active">
+            <img src="https://my.imimg.com/gifs-new/headerbg03.jpg" class="d-block w-100" alt="Slide 1">
+            <div class="carousel-caption d-none d-md-block">
+                <h1 class="display-4 text-white"> <Strong> Shop Now </Strong></h1>
+                <p>Empowering Businesses, Fueling Success.</p>
+            </div>
+        </div>
+    </div>
+</div>
+
 <div class="container">
     <div class="row">
         <div class="col-12 my-3">
@@ -18,7 +31,8 @@
                         <div class="card-body">
                             <h6 class="card-title">{{pro.title}}</h6>
                             <p class="card-content text-primary">{{pro.category.title}}</p>
-                            <a href="{% url 'product_details_url' pro.id %}" class="btn btn-sm btn-outline-secondary">More Details</a>
+                            <a href="{% url 'product_details_url' pro.id %}"
+                                class="btn btn-sm btn-outline-secondary">More Details</a>
                         </div>
                     </div>
                 </div>
