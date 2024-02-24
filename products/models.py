@@ -32,13 +32,3 @@ class Contact(models.Model):
     
     def __str__(self):
         return self.subject
-
-class Review(models.Model):
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
-    vcl = models.ForeignKey(Product, on_delete=models.CASCADE, related_name='reviews', default=1)
-    title = models.CharField(max_length=100)
-    text = models.TextField()
-    approved = models.BooleanField(default=0)
-
-    def __str__(self):
-        return self.title
