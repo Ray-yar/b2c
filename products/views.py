@@ -32,15 +32,50 @@ def all_products(request):
 
 def product_detail(request, product_id):
     product = get_object_or_404(Product, pk=product_id)
-    reviews = Review.objects.all()
-    review = reviews.filter(approved=True)
 
-    context = {
-        'product': product,
-        'reviews' : review,
-        'review_form' : ReviewForm()
-    }
-    return render(request, 'product_details.html', context)
+    if request.method == 'DELETE':
+        review = get_object_or_404(Review, id=id)
+        if not request.user.is_authenticated or review.user != request.user:
+            messages.error(request, "You don't have permission to delete this review.")
+            return HttpResponseBadRequest("You don't have permission to delete this review.")
+
+        review.delete()
+        messages.success(request, "Review deleted successfully.")
+        return HttpResponse("Review deleted successfully.", status=200)
+
+        
+    if request.method == 'POST':
+        review_id = request.POST.get('id')
+        if review_id:
+            # Editing an existing review
+            review = get_object_or_404(Review, id=review_id)
+            review_form = ReviewForm(request.POST, instance=review)
+            messages.success(request, "Review updated successfully.")
+        else:
+            # Inserting a new review
+            review_form = ReviewForm(request.POST)
+            messages.success(request, "Review inserted successfully, please wait we will publish it after a quick review.")
+
+        if review_form.is_valid():
+            review = review_form.save(commit=False)
+            review.prod = product
+            review.user = request.user
+            review.save()
+            review_form = ReviewForm()
+        else:
+            review = None
+
+        # reviews = vehicle.reviews.filter(approved=True)
+        return redirect('/products/'+product_id+'/')
+    else: 
+        reviews = Review.objects.all()
+        filtered_review = reviews.filter(approved=True)
+        context = {
+            'product': product,
+            'reviews' : filtered_review,
+            'review_form' : ReviewForm()
+        }
+        return render(request, 'product_details.html', context)
 
 def contact_us(request):
     if request.method == 'POST':
