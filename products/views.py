@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect, reverse, get_object_or_404
+from django.shortcuts import render, redirect, reverse, get_object_or_404, HttpResponse
 from django.contrib import messages
 from django.db.models import Q
 from .models import Product, Category, Review
@@ -32,17 +32,6 @@ def all_products(request):
 
 def product_detail(request, product_id):
     product = get_object_or_404(Product, pk=product_id)
-
-    if request.method == 'DELETE':
-        review = get_object_or_404(Review, id=id)
-        if not request.user.is_authenticated or review.user != request.user:
-            messages.error(request, "You don't have permission to delete this review.")
-            return HttpResponseBadRequest("You don't have permission to delete this review.")
-
-        review.delete()
-        messages.success(request, "Review deleted successfully.")
-        return HttpResponse("Review deleted successfully.", status=200)
-
         
     if request.method == 'POST':
         review_id = request.POST.get('id')
@@ -68,14 +57,23 @@ def product_detail(request, product_id):
         # reviews = vehicle.reviews.filter(approved=True)
         return redirect('/products/'+product_id+'/')
     else: 
-        reviews = Review.objects.all()
-        filtered_review = reviews.filter(approved=True)
+        reviews = Review.objects.filter(prod=product, approved=True)
         context = {
             'product': product,
-            'reviews' : filtered_review,
+            'reviews' : reviews,
             'review_form' : ReviewForm()
         }
         return render(request, 'product_details.html', context)
+
+def delete_review(request, review_id):
+        review = get_object_or_404(Review, id=review_id)
+        if not request.user.is_authenticated or review.user != request.user:
+            messages.error(request, "You don't have permission to delete this review.")
+            return HttpResponseBadRequest("You don't have permission to delete this review.")
+        else:
+            review.delete()
+            messages.success(request, "Review deleted successfully.")
+            return HttpResponse("Review deleted successfully.", status=200)
 
 def contact_us(request):
     if request.method == 'POST':
