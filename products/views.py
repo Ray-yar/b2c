@@ -54,7 +54,6 @@ def product_detail(request, product_id):
         else:
             review = None
 
-        # reviews = vehicle.reviews.filter(approved=True)
         return redirect('/products/'+product_id+'/')
     else: 
         reviews = Review.objects.filter(prod=product, approved=True)

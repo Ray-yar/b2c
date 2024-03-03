@@ -10,16 +10,16 @@
                     <div class="white-box text-center">
                         {% if "placeholder" in product.featured_photo.url %}
                         <img class="card-img-top"
-                            src="https://codeinstitute.s3.amazonaws.com/fullstack/blog/default.jpg" alt="Vehicle Photo">
+                            src="https://codeinstitute.s3.amazonaws.com/fullstack/blog/default.jpg" alt="Afghan Store, Online Store, B2C">
                         {% else %}
                         <img class="card-img-top" style="object-fit: cover;" src=" {{ product.featured_photo.url }}"
-                            alt="Vehicle Photo">
+                            alt="Afghan Store, Online Store, B2C">
                         {% endif %}
                     </div>
                 </div>
                 <div class="col-xl-6 col-lg-12 col-md-12 col-sm-12">
                     <h4 class="box-title mt-4">{{ product.title }}</h4>
-                    <p>{{ product.desc | safe }}</p>
+                    <h6>{{ product.desc | safe }}</h6>
                     <h4 class="mb-4 text-danger">
                         Price ${{ product.price }}
                     </h4>
