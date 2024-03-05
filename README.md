@@ -133,7 +133,7 @@ The site's HTML, CSS and Python codes are validated by the W3C Markup Validation
 
 5. **Post New Product:** I manaually tested product form and the product will be inserted when form filled correctly.
 
-6. **See List of Posts:** I manaually tested loading list of products after insertion and the vehicles will be loaded after registeration.
+6. **See List of Posts:** I manaually tested loading list of products.
 ![alt text](.docs/products.png "Posts") 
 
 7. **Add, Read, Edit and Delete Reviews:** I manaually tested adding review form and it works fine, and i manaually tested edit and delete, they works like they have to work.
@@ -142,7 +142,7 @@ The site's HTML, CSS and Python codes are validated by the W3C Markup Validation
 8. **Add contact form:** I manaually tested contact form and validations, it adds new feedback when form fills properly.
  ![alt text](.docs/contact.png "Details") 
 
-9. **See vehicle details:** I manaually tested vehicles details screen it shows every thing properly and responsive.
+9. **See product details:** I manaually tested product details screen it shows every thing properly and responsive.
  ![alt text](.docs/add_to_bag.png "Details") 
 
 ## Deployment:
