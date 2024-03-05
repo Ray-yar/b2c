@@ -20,47 +20,57 @@ If you want to log in as a normal user, simply click on the register button on t
 
 ## User Experience & user stories
 ### Admin
-* As an admin I can access admin panel so that I can create, read, update and delete Products.
-* As an admin I can access admin panel so that I can approve or reject reviews from users.
+* As an admin, I want to analyze sales data, track popular products, and identify trends to improve the overall business strategy.
+* As an admin, I want to view and manage customer orders, handle cancellations or refunds when necessary.
 
 ### LoggedIn User
 * As a loggedin user I can add my review for a specific Product.
 * As a loggedin user I can edit, delete, and read my review in Product details page.
 
-### Normal User
-* As a normal user I can see the list of Products so that I could buy one.
-* As a normal user I can access to pagination so that see list of Products very fast.
-* As a normal user I can see the details of each product so that I could know all details about that.
+### Customer User
+* As a customer, I want to view my shopping cart summary, including the total cost of items and any applicable discounts or promotions.
+* As a customer, I want the ability to modify the quantity of items in my shopping cart or remove items as needed before checkout.
+* As a customer, I want to add items to my shopping cart, so I can keep track of the products I intend to buy.
+* As a customer, I want to view detailed product information, including price, quantity, nutritional details, and customer reviews, to make informed purchasing decisions.
+* As a customer, I want to create an account, so I can log in and manage my grocery orders and preferences easily.
+* As a customer, I want to securely proceed to checkout and make payments for my grocery order.
+* As a customer, I want to provide feedback or rate the products and overall shopping experience, helping others make better choices.
 
+
+### Developer Stories
+* As a Developer, I want to implement SEO.
+* As a developer i should implelement marketing startegies.
+* As a Developer, I want to Test html codes for being valide.
 
 ### Implemented Agile in GitHub
-![alt text](docs/agile.png "User Stories") 
+![alt text](.docs/agile.png "User Stories") 
 
 ## Features
 According to the mentined point at the top the users can use the website with these features:
 1. Users can create user account.
-2. Users can see the vehicle details and mail for seller.
-3. Users can comment and review on vehicles.
-4. Admins can approve or reject vehicle to be published.
-5. Admins can approve or reject reviews.
-6. This a full responsive webapp
+2. Users can see the product details.
+3. Users can comment and review on product.
+4. Users can add to bag the product.
+5. Users can checkout.
+6. Admins can approve or reject reviews.
+7. This a full responsive webapp
 
 ## Structure
 Simplicity, clarity and ease of navigation between pages were the main aspects for design of this website's structure.
 
 At the top of the page there is a recognisable type of navigation bar with website name on the left side and the navigation links.
 ### Files & Directories
-1. autotrader - project directory.
+1. b2c - project directory.
 2. utils.py - Contains all Django helper functions used in views.py.
 3. urls.py - This file handles all the URLs of the project.
-4. shop - main application directory.
+4. store - main application directory.
 5. static - contains all static content.
 6. css - Contains all css files for styling the webpages.
 7. js - Contains all javascript files used in the application.
 8. img - Contains all image files used in the application.
 9. templates Contains all application templates.
-10. index.html - Template for showing all vehicles.
-11. vehicle_details.html - Template for showing details for each vehicle.
+10. index.html - Template for showing all products.
+11. product_details.html - Template for showing details for each product.
 12. login.html - Login user page.
 13. register.html - Register user page.
 14. admin.py - Contains some models for access to the Django administrator.
@@ -73,8 +83,11 @@ At the top of the page there is a recognisable type of navigation bar with websi
 The backend consists of Python built with the Django framework with a database of a ElephantSQL for the deployed version.
 
 The following models were created to represent the database model structure for the website:
-1. VehicleModel
+1. ProductModel
 2. ReviewModel
+3. ContactModel
+4. Order
+5. OrderLineItem
 
 ### Technologies Used
 This website is developed and designed using these stack:
@@ -92,7 +105,7 @@ This website is developed and designed using these stack:
 4. Git
 5. GitHub
 6. Heroku Platform
-7. Postgres
+7. PostgreSQL
 
 ## Testing
 ### Testing Strategy
@@ -104,7 +117,7 @@ The site's HTML, CSS and Python codes are validated by the W3C Markup Validation
 * HTML HTML docs were run through the W3C Markup validation and passed the validation.
 
   * Html success report:
-  ![alt text](docs/html.png "Fixed Report") 
+  ![alt text](.docs/html.png "Fixed Report") 
 
   * Css All CSS files ran through CSS jigsaw validator with some bootstrap errors that can be ignored.
   
@@ -114,26 +127,20 @@ The site's HTML, CSS and Python codes are validated by the W3C Markup Validation
 2. **Account Registeration Testing:** I manually tested the register form and entered needed fields. The password needs to meet certain requirements when user regsiter an account.
 
 3. **User exists:** I manually tested that it's not possible to register an account with the same username or the same email address.
-![alt text](docs/exist.png "Exist User") 
+![alt text](.docs/exist.png "Exist User") 
 
 4. **Login Account** I manually tested the login form. The username and the password needs to be the same as user specified when registering an account.
 
-5. **Post New Vehicle:** I manaually tested vehicle form and the vehicle will be inserted when form filled correctly.
+5. **Post New Product:** I manaually tested product form and the product will be inserted when form filled correctly.
 
-6. **See List of Posts:** I manaually tested loading list of vehicles after insertion and the vehicles will be loaded after registeration.
-![alt text](docs/list.png "Posts") 
+6. **See List of Posts:** I manaually tested loading list of products after insertion and the vehicles will be loaded after registeration.
+![alt text](.docs/products.png "Posts") 
 
 7. **Add, Read, Edit and Delete Reviews:** I manaually tested adding review form and it works fine, and i manaually tested edit and delete, they works like they have to work.
 ![alt text](docs/review.png "Review Form") 
 
-8. **Site Paggination:** I manaually tested pagination and when i added multiple vehicles it loads 8 vehicles per each page.
-![alt text](docs/pagination.png "Mail Seller") 
-
-9. **Mail Seller:** I manaually tested mail to seller button and it redirect me to the pc email screen to send email.
-![alt text](docs/mail.png "Mail Seller") 
-
-10. **Add contact form:** I manaually tested contact form and validations, it adds new feedback when form fills properly.
- ![alt text](docs/contact.png "Details") 
+8. **Add contact form:** I manaually tested contact form and validations, it adds new feedback when form fills properly.
+ ![alt text](.docs/contact.png "Details") 
 
 11. **See vehicle details:** I manaually tested vehicles details screen it shows every thing properly and responsive.
  ![alt text](docs/details.png "Details") 
