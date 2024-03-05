@@ -1,42 +1,68 @@
-{% load static %}
 <!DOCTYPE html>
 <html lang="en-US">
 
 <head>
-    <!-- Meta Device Scale  -->
+
     <title>Afghan Shopping Center</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <!-- Description -->
-    <meta name="description"
-        content="Discover a wide range of products at B2C. Shop for clothes, electronics, gadgets, and more. Enjoy fast delivery and secure payment options. Start shopping now!">
-    <!-- Keywords -->
-    <meta name="keywords"
-        content="online shopping, buy clothes online, electronics, gadgets, fast delivery, secure payment">
-    <!-- Font Awesome -->
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet" />
-    <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" rel="stylesheet" />
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css"
-        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <meta name="description" content="Discover a wide range of products at B2C. Shop for clothes, electronics, gadgets, and more. Enjoy fast delivery and secure payment options. Start shopping now!">
+    <meta name="keywords" content="online shopping, buy clothes online, electronics, gadgets, fast delivery, secure payment">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css">
+    <link href="//cdn-images.mailchimp.com/embedcode/classic-061523.css" rel="stylesheet" type="text/css">
     <style>
         body {
             -webkit-font-smoothing: auto;
             background-color: #F0F0F0;
         }
-    </style>
-    <link href="//cdn-images.mailchimp.com/embedcode/classic-061523.css" rel="stylesheet" type="text/css">
-    <style type="text/css">
+
         #mc_embed_signup {
             background: #fff;
-            false;
             clear: left;
             font: 14px Helvetica, Arial, sans-serif;
             width: 600px;
         }
 
-        /* Add your own Mailchimp form style overrides in your site stylesheet or in this style block.
-                     We recommend moving this block and the preceding CSS link to the HEAD of your HTML file. */
+        .jumbotron {
+            height: 265px;
+            background-image: url(https://my.imimg.com/gifs-new/headerbg03.jpg);
+            background-repeat: no-repeat;
+            background-size: cover;
+            padding-bottom: 50px;
+        }
+
+        .StripeElement,
+        .stripe-style-input {
+            box-sizing: border-box;
+            height: 40px;
+            padding: 10px 12px;
+            border: 1px solid transparent;
+            border-radius: 0px;
+            background-color: white;
+            box-shadow: 0 1px 3px 0 #e6ebf1;
+            -webkit-transition: box-shadow 150ms ease;
+            transition: box-shadow 150ms ease;
+        }
+
+        .StripeElement--focus,
+        .stripe-style-input:focus,
+        .stripe-style-input:active {
+            box-shadow: 0 1px 3px 0 #cfd7df;
+        }
+
+        .StripeElement--webkit-autofill {
+            background-color: #fefde5 !important;
+        }
+
+        .stripe-style-input::placeholder {
+            color: #aab7c4;
+        }
+
+        .fieldset-label {
+            position: relative;
+            right: .5rem;
+        }
     </style>
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
         integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
@@ -44,65 +70,60 @@
 </head>
 
 <body>
-    <nav class="navbar navbar-light bg-light">
-        <a class="navbar-brand" href="#"> <strong> B2C </strong> </a>
-        <ul class="nav nav-pills">
-            <li class="nav-item"><a class="nav-link" href="{% url 'products_url' %}">Shop</a></li>
-            <li class="nav-item"><a class="nav-link" href="{% url 'about_us_url' %}">About Us</a></li>
-            <li class="nav-item"><a class="nav-link" href="{% url 'contact_us_url' %}">Contact Us</a></li>
-        </ul>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="#"><strong>B2C</strong></a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
 
-        <form class="navbar-form navbar-left col-md-6" method="GET" action="">
-            <div class="input-group">
-                <div class="input-group-prepend">
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item"><a class="nav-link" href="{% url 'products_url' %}">Shop</a></li>
+                <li class="nav-item"><a class="nav-link" href="{% url 'about_us_url' %}">About Us</a></li>
+                <li class="nav-item"><a class="nav-link" href="{% url 'contact_us_url' %}">Contact Us</a></li>
+            </ul>
 
-                    <select class="btn btn-outline-secondary text-left" name="category" id="category">
-                        <option value="">Select Category</option>
-                        {% for cat in categories %}
-                        <option value="{{ cat.id }}">{{ cat.title }}</option>
-                        {% endfor %}
-                    </select>
+            <form class="form-inline my-2 my-lg-0" method="GET" action="#">
+                <select class="form-control mr-sm-2" name="category" id="category">
+                    <option value="">Select Category</option>
+                    {% for cat in categories %}
+                    <option value="{{ cat.id }}">{{ cat.title }}</option>
+                    {% endfor %}
+                </select>
+                <input class="form-control mr-sm-2" type="search" placeholder="Search..." aria-label="Search" name="q">
+                <button class="btn btn-outline-secondary my-2 my-sm-0" type="submit"><i
+                        class="fa fa-search"></i></button>
+            </form>
 
-                </div>
-                <input type="text" class="form-control" value="{% if selected_query %}{{ selected_query }}{% endif %}"
-                    placeholder="Search..." name="q">
-                <div class="input-group-append">
-                    <button class="btn btn-outline-secondary" type="submit"><i class="fa fa-search"></i></button>
-                </div>
-            </div>
-        </form>
-
-        <ul class="nav nav-pills">
-            <li class="nav-item">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    {% if user.is_authenticated %}
+                    {% if user.is_superuser %}
+                    <a class="btn btn-primary navbar-btn" target="_blank" href="{% url 'admin:index' %}">
+                        <i class="fas fa-home"></i>
+                    </a>
+                    {% endif %}
+                    {% endif %}
+                </li>
+                <li class="nav-item mr-1">
+                    <a href="/bag/" class="btn btn-info navbar-btn"> <i class="fas fa-shopping-cart"></i></a>
+                </li>
                 {% if user.is_authenticated %}
-                {% if user.is_superuser %}
-                <a class="btn btn-primary navbar-btn mr-1" target="_blank" href="{% url 'admin:index' %}">
-                    <i class="fas fa-home"></i>
-                </a>
+                <li class="nav-item">
+                    <a class="btn btn-danger navbar-btn" href="{% url 'account_logout' %}">
+                        <i class="fas fa-sign-out-alt"></i>
+                    </a>
+                </li>
+                {% else %}
+                <li class="nav-item">
+                    <a class="btn btn-primary navbar-btn" href="{% url 'account_login' %}">
+                        <i class="fas fa-sign-in-alt"></i>
+                    </a>
+                </li>
                 {% endif %}
-                {% endif %}
-            </li>
-            <li class="nav-item">
-                <a href="/bag/" class="btn btn-info navbar-btn mr-1"> <i class="fas fa-shopping-cart"></i></a>
-            </li>
-            <li class="nav-item">
-                <a href="{% url 'wishlist_url' %}" class="btn btn-danger navbar-btn mr-1"> <i
-                        class="fas fa-heart"></i></a>
-            </li>
-            {% if user.is_authenticated %}
-            <li class="nav-item">
-                <a class="btn btn-danger navbar-btn mr-1" href="{% url 'account_logout' %}">
-                    <i class="fas fa-sign-out-alt"></i>
-                </a>
-            </li>
-            {% else %}
-            <li class="nav-item">
-                <a class="btn btn-primary navbar-btn mr-1" href="{% url 'account_login' %}">
-                    <i class="fas fa-sign-in-alt"></i>
-                </a>
-            </li>
-            {% endif %}
-        </ul>
+            </ul>
+        </div>
     </nav>
 
     <div class="container">
@@ -124,178 +145,169 @@
         {% endblock content %}
     </main>
 
-    
 
-        <!-- Extended Footer -->
-        <footer class="footer mt-auto py-4 bg-white">
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-4">
-                        <h5>Contact Us</h5>
-                        <p>Email: info@b2c.com</p>
-                        <p>Phone: +353 899 537 733</p>
-                    </div>
-                    <div class="col-md-4 text-md-right">
-                        <div class="col-md-12 text-center">
-                            <p class="m-0">Made with ❤️ by Rohullah Ahmadyar</p>
-                            <p class="m-0 social-icons">
-                                Follow us:
-                                <a href="https://www.facebook.com/profile.php?id=61557031890007" rel="noopener"
-                                    class="social-icon"><i class="fab fa-facebook-square"></i> Facebook</a>
-                            </p>
-                        </div>
-                    </div>
-                    <div class="col-md-4 text-right">
-                        <div id="mc_embed_shell">
 
-                            <div id="mc_embed_signup">
-                                <form
-                                    action="https://herokuapp.us18.list-manage.com/subscribe/post?u=03209decc7a097c3cae15ae22&amp;id=44939ee60a&amp;f_id=004023e7f0"
-                                    method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate"
-                                    target="_blank">
-                                    <div id="mc_embed_signup_scroll">
-                                        <h2>Subscribe</h2>
-                                        <div class="mc-field-group"><label for="mce-EMAIL">Email Address <span
-                                                    class="asterisk">*</span></label><input type="email" name="EMAIL" class="required email"
-                                                id="mce-EMAIL" required="" value=""><span id="mce-EMAIL-HELPERTEXT"
-                                                class="helper_text"></span></div>
-                                        <div id="mce-responses" class="clear foot">
-                                            <div class="response" id="mce-error-response" style="display: none;"></div>
-                                            <div class="response" id="mce-success-response" style="display: none;"></div>
-                                        </div>
-                                        <div aria-hidden="true" style="position: absolute; left: -5000px;">
-                                            /* real people should not fill this in and expect good things - do not remove this or risk form
-                                            bot signups */
-                                            <input type="text" name="b_03209decc7a097c3cae15ae22_44939ee60a" tabindex="-1" value="">
-                                        </div>
-                                        <div class="optionalParent">
-                                            <div class="clear foot">
-                                                <input type="submit" name="subscribe" id="mc-embedded-subscribe" class="button"
-                                                    value="Subscribe">
-                                                <!-- <p style="margin: 0px auto;"><a href="http://eepurl.com/iLlR7w"
-                                                        title="Mailchimp - email marketing made easy and fun"><span
-                                                            style="display: inline-block; background-color: transparent; border-radius: 4px;"><img
-                                                                class="refferal_badge"
-                                                                src="https://digitalasset.intuit.com/render/content/dam/intuit/mc-fe/en_us/images/intuit-mc-rewards-text-dark.svg"
-                                                                alt="Intuit Mailchimp"
-                                                                style="width: 220px; height: 40px; display: flex; padding: 2px 0px; justify-content: center; align-items: center;"></span></a>
-                                                </p> -->
-                                            </div>
+    <!-- Extended Footer -->
+    <footer class="footer mt-auto py-4 bg-white">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4">
+                    <h5>Contact Us</h5>
+                    <p>Email: info@b2c.com</p>
+                    <p>Phone: +353 899 537 733</p>
+                </div>
+                <div class="col-md-4 text-md-right">
+                    <div class="col-md-12 text-center">
+                        <p class="m-0">Made with ❤️ by Rohullah Ahmadyar</p>
+                        <p class="m-0 social-icons">
+                            Follow us:
+                            <a href="https://www.facebook.com/profile.php?id=61557031890007" rel="noopener"
+                                class="social-icon"><i class="fab fa-facebook-square"></i> Facebook</a>
+                        </p>
+                    </div>
+                </div>
+                <div class="col-md-4 text-right">
+                    <div id="mc_embed_shell">
+
+                        <div id="mc_embed_signup">
+                            <form
+                                action="https://herokuapp.us18.list-manage.com/subscribe/post?u=03209decc7a097c3cae15ae22&amp;id=44939ee60a&amp;f_id=004023e7f0"
+                                method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form"
+                                class="validate" target="_blank">
+                                <div id="mc_embed_signup_scroll">
+                                    <h2>Subscribe</h2>
+                                    <div class="mc-field-group"><label for="mce-EMAIL">Email Address <span
+                                                class="asterisk">*</span></label><input type="email" name="EMAIL"
+                                            class="required email" id="mce-EMAIL" required="" value=""><span
+                                            id="mce-EMAIL-HELPERTEXT" class="helper_text"></span></div>
+                                    <div id="mce-responses" class="clear foot">
+                                        <div class="response" id="mce-error-response" style="display: none;"></div>
+                                        <div class="response" id="mce-success-response" style="display: none;"></div>
+                                    </div>
+                                    <div aria-hidden="true" style="position: absolute; left: -5000px;">
+                                        /* real people should not fill this in and expect good things - do not remove
+                                        this or risk form
+                                        bot signups */
+                                        <input type="text" name="b_03209decc7a097c3cae15ae22_44939ee60a" tabindex="-1"
+                                            value="">
+                                    </div>
+                                    <div class="optionalParent">
+                                        <div class="clear foot">
+                                            <input type="submit" name="subscribe" id="mc-embedded-subscribe"
+                                                class="button" value="Subscribe">
                                         </div>
                                     </div>
-                                </form>
-                            </div>
+                                </div>
+                            </form>
+                        </div>
                     </div>
                 </div>
             </div>
-        </footer>
+        </div>
+    </footer>
 
 
-        {{ block.super }}
-        {{ stripe_public_key|json_script:"id_stripe_public_key" }}
-        {{ client_secret|json_script:"id_client_secret" }}
+    {{ block.super }}
+    {{ stripe_public_key|json_script:"id_stripe_public_key" }}
+    {{ client_secret|json_script:"id_client_secret" }}
 
-        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.7/dist/umd/popper.min.js"
-            integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
-            crossorigin="anonymous"></script>
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js"
-            integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
-            crossorigin="anonymous"></script>
-        <!-- Stripe -->
-        <script src="https://js.stripe.com/v3/"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.7/dist/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        crossorigin="anonymous"></script>
+    <!-- Stripe -->
+    <script src="https://js.stripe.com/v3/"></script>
 
-        <script>
-            $(document).ready(function () {
-                var stripePublicKey = $('#id_stripe_public_key').text().slice(1, -1);
-                var clientSecret = $('#id_client_secret').text().slice(1, -1);
-                var stripe = Stripe("pk_test_51O7wT0J9UWAGtY4c4frot9K0YglHBq8I1aaoen5EqUuDTEukvmiBwlzpqhTp4EeAK0tbZebA2UBV1fuqzorZFoP400LeS78Goe");
-                var elements = stripe.elements();
-                var style = {
-                    base: {
-                        color: '#000',
-                        fontFamily: '"Helvetica Neue", Helvetica, sans-serif',
-                        fontSmoothing: 'antialiased',
-                        fontSize: '16px',
-                        '::placeholder': {
-                            color: '#aab7c4'
-                        }
-                    },
-                    invalid: {
-                        color: '#dc3545',
-                        iconColor: '#dc3545'
+    <script>
+        $(document).ready(function () {
+            var stripePublicKey = $('#id_stripe_public_key').text().slice(1, -1);
+            var clientSecret = $('#id_client_secret').text().slice(1, -1);
+            var stripe = Stripe("pk_test_51O7wT0J9UWAGtY4c4frot9K0YglHBq8I1aaoen5EqUuDTEukvmiBwlzpqhTp4EeAK0tbZebA2UBV1fuqzorZFoP400LeS78Goe");
+            var elements = stripe.elements();
+            var style = {
+                base: {
+                    color: '#000',
+                    fontFamily: '"Helvetica Neue", Helvetica, sans-serif',
+                    fontSmoothing: 'antialiased',
+                    fontSize: '16px',
+                    '::placeholder': {
+                        color: '#aab7c4'
                     }
-                };
-                var card = elements.create('card', { style: style });
-                card.mount('#card-element');
+                },
+                invalid: {
+                    color: '#dc3545',
+                    iconColor: '#dc3545'
+                }
+            };
+            var card = elements.create('card', { style: style });
+            card.mount('#card-element');
 
 
-                // Handle realtime validation errors on the card element
-                card.addEventListener('change', function (event) {
-                    var errorDiv = document.getElementById('card-errors');
-                    if (event.error) {
-                        var html = `
+            // Handle realtime validation errors on the card element
+            card.addEventListener('change', function (event) {
+                var errorDiv = document.getElementById('card-errors');
+                if (event.error) {
+                    var html = `
             <span class="icon" role="alert">
                 <i class="fas fa-times"></i>
             </span>
             <span>${event.error.message}</span>
         `;
-                        $(errorDiv).html(html);
-                    } else {
-                        errorDiv.textContent = '';
+                    $(errorDiv).html(html);
+                } else {
+                    errorDiv.textContent = '';
+                }
+            });
+
+            // Handle form submit
+            var form = document.getElementById('payment-form');
+
+            form.addEventListener('submit', function (ev) {
+                ev.preventDefault();
+                card.update({ 'disabled': true });
+                $('#submit-button').attr('disabled', true);
+                stripe.confirmCardPayment(clientSecret, {
+                    payment_method: {
+                        card: card,
                     }
-                });
-
-                // Handle form submit
-                var form = document.getElementById('payment-form');
-
-                form.addEventListener('submit', function (ev) {
-                    ev.preventDefault();
-                    card.update({ 'disabled': true });
-                    $('#submit-button').attr('disabled', true);
-                    stripe.confirmCardPayment(clientSecret, {
-                        payment_method: {
-                            card: card,
-                        }
-                    }).then(function (result) {
-                        if (result.error) {
-                            var errorDiv = document.getElementById('card-errors');
-                            var html = `
+                }).then(function (result) {
+                    if (result.error) {
+                        var errorDiv = document.getElementById('card-errors');
+                        var html = `
                 <span class="icon" role="alert">
                 <i class="fas fa-times"></i>
                 </span>
                 <span>${result.error.message}</span>`;
-                            $(errorDiv).html(html);
-                            card.update({ 'disabled': false });
-                            $('#submit-button').attr('disabled', false);
-                        } else {
-                            if (result.paymentIntent.status === 'succeeded') {
-                                form.submit();
-                            }
+                        $(errorDiv).html(html);
+                        card.update({ 'disabled': false });
+                        $('#submit-button').attr('disabled', false);
+                    } else {
+                        if (result.paymentIntent.status === 'succeeded') {
+                            form.submit();
                         }
-                    });
+                    }
                 });
             });
-        </script>
+        });
+    </script>
 
-        <script>
-            document.addEventListener("DOMContentLoaded", function () {
-                var elementsToStyle = document.querySelectorAll("input[type='text'], input[type='password'], input[type='email'], textarea");
-                for (var i = 0; i < elementsToStyle.length; i++) {
-                    elementsToStyle[i].classList.add("form-control");
-                }
-            });
-            setTimeout(function () {
-                let messages = document.getElementById('msg');
-                let alert = new bootstrap.Alert(messages);
-                alert.close();
-            }, 5000);
-        </script>
-        <script type="text/javascript" src="//s3.amazonaws.com/downloads.mailchimp.com/js/mc-validate.js"></script>
-        <script
-            type="text/javascript">(function ($) { window.fnames = new Array(); window.ftypes = new Array(); fnames[0] = 'EMAIL'; ftypes[0] = 'email'; fnames[1] = 'FNAME'; ftypes[1] = 'text'; fnames[2] = 'LNAME'; ftypes[2] = 'text'; fnames[3] = 'ADDRESS'; ftypes[3] = 'address'; fnames[4] = 'PHONE'; ftypes[4] = 'phone'; fnames[5] = 'BIRTHDAY'; ftypes[5] = 'birthday'; }(jQuery)); var $mcj = jQuery.noConflict(true);</script>
-    </div>
-
-    Í
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            var elementsToStyle = document.querySelectorAll("input[type='text'], input[type='password'], input[type='email'], textarea");
+            for (var i = 0; i < elementsToStyle.length; i++) {
+                elementsToStyle[i].classList.add("form-control");
+            }
+        });
+        setTimeout(function () {
+            let messages = document.getElementById('msg');
+            let alert = new bootstrap.Alert(messages);
+            alert.close();
+        }, 5000);
+    </script>
+    <script src="//s3.amazonaws.com/downloads.mailchimp.com/js/mc-validate.js"></script>
+    <script>(function ($) { window.fnames = new Array(); window.ftypes = new Array(); fnames[0] = 'EMAIL'; ftypes[0] = 'email'; fnames[1] = 'FNAME'; ftypes[1] = 'text'; fnames[2] = 'LNAME'; ftypes[2] = 'text'; fnames[3] = 'ADDRESS'; ftypes[3] = 'address'; fnames[4] = 'PHONE'; ftypes[4] = 'phone'; fnames[5] = 'BIRTHDAY'; ftypes[5] = 'birthday'; }(jQuery)); var $mcj = jQuery.noConflict(true);</script>
 </body>
 
 </html>
