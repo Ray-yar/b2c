@@ -1,34 +1,37 @@
-## AutoTrader
+## Afghan Shopping Center | B2C
 
-AutoTrader is a popular app for buying and selling vehicles, providing a comprehensive solution for car buyers and sellers, with a wide range of features and services.
+At Afghan Shopping Center, we pride ourselves on offering an extensive range of high-quality goods, from traditional Afghan handicrafts to modern fashion trends, electronics, home decor, and so much more. Our friendly staff is always on hand to assist you with any questions or special requests, ensuring that your shopping journey is nothing short of delightful.
 
-<a href="https://autotrader.herokuapp.com/" target="_blank">Visit the live project here</a>
+<a href="https://b2c-7a93138c14a4.herokuapp.com/" target="_blank">Visit the live project here</a>
 
-![alt text](docs/multi_platform1.png "Responsive Image") 
+![alt text](.docs/responssive.png "Responsive Image") 
 
 ## Requirements
-Admins are posible to implement crud on all posts, reviews and user. They have the complete permission for each of them.
+Admins have the ability to perform CRUD operations on all posts, reviews, and users, with complete permissions for each.
 
-1. if you want to login as admin please enter the following username and password to login
-    * Username: allah
-    * Password: allah
-2. if you want to login as normal user you can click on register button in login page.
+### Admin Login:
+To log in as an admin, please use the following credentials:
+
+- **Username:** rohullah
+- **Password:** rohullah
+
+### Normal User Login:
+If you want to log in as a normal user, simply click on the register button on the login page.
 
 ## User Experience & user stories
 ### Admin
-* As an admin I can access admin panel so that I can create, read, update and delete vehicles.
+* As an admin I can access admin panel so that I can create, read, update and delete Products.
 * As an admin I can access admin panel so that I can approve or reject reviews from users.
 
 ### LoggedIn User
-* As a loggedin user I can add my review for a specific vehicle.
-* As a loggedin user I can edit, delete, and read my review in vehicle details page.
+* As a loggedin user I can add my review for a specific Product.
+* As a loggedin user I can edit, delete, and read my review in Product details page.
 
 ### Normal User
-* As a normal user I can see the list of vehicles so that I could buy one.
-* As a normal user I can access to pagination so that see list of vehicles very fast.
-* As a normal user I can see the details of each vehicle so that I could know all details about that.
-* As a normal user I can contact to the owner of the vehicle so that I could make a deal with him/her.
-* As a normal user I can contact to the owner of the site so that I could ask any questions I have.
+* As a normal user I can see the list of Products so that I could buy one.
+* As a normal user I can access to pagination so that see list of Products very fast.
+* As a normal user I can see the details of each product so that I could know all details about that.
+
 
 ### Implemented Agile in GitHub
 ![alt text](docs/agile.png "User Stories") 
