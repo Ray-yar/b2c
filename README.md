@@ -137,13 +137,13 @@ The site's HTML, CSS and Python codes are validated by the W3C Markup Validation
 ![alt text](.docs/products.png "Posts") 
 
 7. **Add, Read, Edit and Delete Reviews:** I manaually tested adding review form and it works fine, and i manaually tested edit and delete, they works like they have to work.
-![alt text](docs/review.png "Review Form") 
+![alt text](.docs/review.png "Review Form") 
 
 8. **Add contact form:** I manaually tested contact form and validations, it adds new feedback when form fills properly.
  ![alt text](.docs/contact.png "Details") 
 
-11. **See vehicle details:** I manaually tested vehicles details screen it shows every thing properly and responsive.
- ![alt text](docs/details.png "Details") 
+9. **See vehicle details:** I manaually tested vehicles details screen it shows every thing properly and responsive.
+ ![alt text](.docs/add_to_bag.png "Details") 
 
 ## Deployment:
 This project was deployed to Heroku. "Heroku is a cloud platform that lets companies build, deliver, monitor and scale apps."- Heroku.
