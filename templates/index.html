@@ -5,8 +5,22 @@
 <div id="homeSlider" class="carousel slide" data-ride="carousel">
     <div class="carousel-inner">
         <div class="carousel-item active">
-            <img src="https://my.imimg.com/gifs-new/headerbg03.jpg" class="d-block w-100" alt="Afghan Store, Online Store, B2C">
+            <img src="https://my.imimg.com/gifs-new/headerbg03.jpg" class="d-block w-100"
+                alt="Afghan Store, Online Store, B2C">
             <div class="carousel-caption d-none d-md-block">
+                <form class="form-group" method="GET" action="#">
+                    <select class="form-control" name="category" id="category">
+                        <option value="">Select Category</option>
+                        {% for cat in categories %}
+                        <option value="{{ cat.id }}">{{ cat.title }}</option>
+                        {% endfor %}
+                    </select>
+                    <input class="form-control" type="search" placeholder="Search..." aria-label="Search" name="q">
+                    <button class="btn btn-outline-secondary my-2 my-sm-0" type="submit">
+                        <i class="fa fa-search"></i>
+                    </button>
+                </form>
+
                 <h1 class="display-4 text-white"> <Strong> Shop Now </Strong></h1>
                 <h5>Empowering Businesses, Fueling Success.</h5>
             </div>
