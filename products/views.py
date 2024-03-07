@@ -68,7 +68,7 @@ def delete_review(request, review_id):
         review = get_object_or_404(Review, id=review_id)
         if not request.user.is_authenticated or review.user != request.user:
             messages.error(request, "You don't have permission to delete this review.")
-            return HttpResponseBadRequest("You don't have permission to delete this review.")
+            return HttpResponse("You don't have permission to delete this review.")
         else:
             review.delete()
             messages.success(request, "Review deleted successfully.")
@@ -88,7 +88,8 @@ def contact_us(request):
             request, 
             'contact_us.html', 
             {
-                'contact_form' : ContactForm()
+                'contact_form' : ContactForm(),
+                'page_title': "Contact Us"
             },
         )
     
@@ -98,7 +99,7 @@ def about_us(request):
             request,
             'about_us.html', 
             {
-                'page_title': "Contact Us"
+                'page_title': "About Us"
             }
         )
     
