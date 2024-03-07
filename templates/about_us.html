@@ -1,22 +1,13 @@
-{% extends 'base.html' %} {% block content %}
+{% extends 'base.html' %} 
 
-<style>
-    .jumbotron {
-        height: 265px;
-        background-image: url(https://my.imimg.com/gifs-new/headerbg03.jpg);
-        background-repeat: no-repeat;
-        background-size: cover;
-        padding-bottom: 50px;
-    }
-</style>
+<!-- Page Header -->
+<!-- Page Header -->
+{% block page_header %}
+{% include 'components/page_header.html' %}
+{% endblock page_header %}
 
-<div class="jumbotron jumbotron-fluid text-center">
-    <div class="container">
-        <h1 class="display-4 text-white"> <Strong> About Us </Strong></h1>
-        <p class="lead text-white">Your trusted online shopping destination for quality products and excellent services.</p>
-    </div>
-</div>
 
+{% block content %}
 <!-- About Us Content -->
 <div class="container bg-white mb-5 rounded p-5">
     <div class="row">

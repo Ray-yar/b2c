@@ -1,0 +1,43 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" href="#"><strong>B2C</strong></a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item"><a class="nav-link" href="{% url 'products_url' %}">Shop</a></li>
+            <li class="nav-item"><a class="nav-link" href="{% url 'about_us_url' %}">About Us</a></li>
+            <li class="nav-item"><a class="nav-link" href="{% url 'contact_us_url' %}">Contact Us</a></li>
+        </ul>
+
+        <ul class="navbar-nav ml-auto">
+            <li class="nav-item">
+                {% if user.is_authenticated %}
+                {% if user.is_superuser %}
+                <a class="btn btn-primary navbar-btn mr-1" target="_blank" href="{% url 'admin:index' %}">
+                    <i class="fas fa-home"></i>
+                </a>
+                {% endif %}
+                {% endif %}
+            </li>
+            <li class="nav-item mr-1">
+                <a href="/bag/" class="btn btn-info navbar-btn"> <i class="fas fa-shopping-cart"></i></a>
+            </li>
+            {% if user.is_authenticated %}
+            <li class="nav-item">
+                <a class="btn btn-danger navbar-btn" href="{% url 'account_logout' %}">
+                    <i class="fas fa-sign-out-alt"></i>
+                </a>
+            </li>
+            {% else %}
+            <li class="nav-item">
+                <a class="btn btn-primary navbar-btn" href="{% url 'account_login' %}">
+                    <i class="fas fa-sign-in-alt"></i>
+                </a>
+            </li>
+            {% endif %}
+        </ul>
+    </div>
+</nav>

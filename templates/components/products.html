@@ -1,0 +1,18 @@
+{% for pro in products %}
+<div class="col-sm-6 col-md-4 col-lg-4 col-xl-4 my-2">
+    <div class="card">
+        {% if "placeholder" in pro.featured_photo.url %}
+        <img src="https://codeinstitute.s3.amazonaws.com/fullstack/blog/default.jpg"
+            alt="Afghan Store, Online Store, B2C">
+        {% else %}
+        <img style="width: 100%;object-fit: contain;" src=" {{ pro.featured_photo.url }}"
+            alt="Afghan Store, Online Store, B2C">
+        {% endif %}
+        <div class="card-body">
+            <h6 class="card-title">{{pro.title}}</h6>
+            <p class="card-content text-primary">{{pro.category.title}}</p>
+            <a href="{% url 'product_details_url' pro.id %}" class="btn btn-sm btn-outline-secondary">More Details</a>
+        </div>
+    </div>
+</div>
+{% endfor %}

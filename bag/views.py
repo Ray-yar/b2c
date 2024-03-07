@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect
 from django.contrib import messages
 
 def view_bag(request):
-    return render(request, 'bag/bag.html')
+    return render(request, 'components/bag/bag.html')
 
 
 

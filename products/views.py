@@ -95,8 +95,11 @@ def contact_us(request):
 
 def about_us(request):
        return render(
-            request, 
+            request,
             'about_us.html', 
+            {
+                'page_title': "Contact Us"
+            }
         )
     
 
