@@ -34,19 +34,19 @@
                             <p class="my-0"><strong>{{ item.product.title }}</strong></p>
                         </td>
                         <td class="py-3">
-                            <p class="my-0">${{ item.product.price }}</p>
+                            <p class="my-0">€ {{ item.product.price }}</p>
                         </td>
                         <td class="py-3 w-25">
                             <p class="my-0">{{ item.quantity }}</p>
                         </td>
                         <td class="py-3">
-                            <p class="my-0">${{ item.product.price }}</p>
+                            <p class="my-0">€ {{ item.subtotal }}</p>
                         </td>
                     </tr>
                     {% endfor %}
                 </table>
                 <div class="text-right">
-                    <h4 class="mt-4"><strong>Total: ${{ total|floatformat:2 }}</strong></h4>
+                    <h4 class="mt-4"><strong>Total: € {{ total|floatformat:2 }}</strong></h4>
                     <a href="/" class="btn btn-outline-secondary btn-lg">
                         <span class="icon">
                             <i class="fas fa-chevron-left"></i>

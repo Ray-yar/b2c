@@ -18,6 +18,7 @@ def bag_contents(request):
             'pro_id': pro_id,
             'quantity': quantity,
             'product': product,
+            'subtotal': quantity * product.price
         })
     
     context = {

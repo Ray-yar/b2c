@@ -21,7 +21,7 @@
                     <h4 class="box-title mt-4">{{ product.title }}</h4>
                     <h6>{{ product.desc | safe }}</h6>
                     <h4 class="mb-4 text-danger">
-                        Price ${{ product.price }}
+                        Price € {{ product.price }}
                     </h4>
                     <form class="form" action="{% url 'add_to_bag' product.id %}" method="POST">
                         {% csrf_token %}
