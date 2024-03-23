@@ -22,9 +22,11 @@
                 {% endif %}
                 {% endif %}
             </li>
+            {% if user.is_authenticated %}
             <li class="nav-item mr-1">
                 <a href="/bag/" class="btn btn-info navbar-btn"> <i class="fas fa-shopping-cart"></i></a>
             </li>
+            {% endif %}
             {% if user.is_authenticated %}
             <li class="nav-item">
                 <a class="btn btn-danger navbar-btn" href="{% url 'account_logout' %}">

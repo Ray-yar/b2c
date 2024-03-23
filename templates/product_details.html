@@ -10,7 +10,8 @@
                     <div class="white-box text-center">
                         {% if "placeholder" in product.featured_photo.url %}
                         <img class="card-img-top"
-                            src="https://codeinstitute.s3.amazonaws.com/fullstack/blog/default.jpg" alt="Afghan Store, Online Store, B2C">
+                            src="https://codeinstitute.s3.amazonaws.com/fullstack/blog/default.jpg"
+                            alt="Afghan Store, Online Store, B2C">
                         {% else %}
                         <img class="card-img-top" style="object-fit: cover;" src=" {{ product.featured_photo.url }}"
                             alt="Afghan Store, Online Store, B2C">
@@ -23,6 +24,11 @@
                     <h4 class="mb-4 text-danger">
                         Price € {{ product.price }}
                     </h4>
+
+                    {% if user.is_authenticated is False %}
+                    <p>Please <a href="{% url 'account_login' %}">login</a> to add "{{ product.title }}" to bag.</p>
+                    {% endif %}
+                    {% if user.is_authenticated %}
                     <form class="form" action="{% url 'add_to_bag' product.id %}" method="POST">
                         {% csrf_token %}
                         <div class="form-row">
@@ -41,8 +47,9 @@
                             </div>
                         </div>
                         <input type="hidden" name="redirect_url" value="{{ request.path }}">
+                    </form>
+                    {% endif %}
                 </div>
-                </form>
             </div>
             <div class="row">
                 <div class="col-lg-6 col-md-6 col-sm-12">
@@ -54,7 +61,8 @@
                                 <div class="media g-mb-30 media-comment">
                                     <div class="media-body u-shadow-v18 g-bg-secondary g-pa-30">
                                         <div class="g-mb-15">
-                                            <h5 class="h5 g-color-gray-dark-v1 mb-0">{{ review.user.username|capfirst }}</h5>
+                                            <h5 class="h5 g-color-gray-dark-v1 mb-0">{{ review.user.username|capfirst }}
+                                            </h5>
                                             <p class="text-muted text-danger">{{ review.title }}</p>
                                         </div>
                                         <p class="text-muted mt-2">
@@ -108,50 +116,50 @@
                 'X-CSRFToken': getCookie('csrftoken')
             },
         })
-        .then(response => {
-            if (response.ok) {
-                window.location.reload();
-            } else {
-                console.error('Failed to delete review.');
-            }
-        })
-        .catch(error => {
-            console.error('Error during review deletion:', error);
-        });
+            .then(response => {
+                if (response.ok) {
+                    window.location.reload();
+                } else {
+                    console.error('Failed to delete review.');
+                }
+            })
+            .catch(error => {
+                console.error('Error during review deletion:', error);
+            });
     }
-    
+
     // Function to get the CSRF token from the cookie
     function getCookie(name) {
         const value = `; ${document.cookie}`;
         const parts = value.split(`; ${name}=`);
         if (parts.length === 2) return parts.pop().split(';').shift();
     }
-    
-    
-    $(document).ready(function(){
-    
+
+
+    $(document).ready(function () {
+
         // Handle Edit Button Click Event
-        $(".edit-button").click(function(){
-            
+        $(".edit-button").click(function () {
+
             // Get Data
             reviewId = $(this).attr('data-review-id');
             reviewTitle = $(this).attr('data-review-title');
             reviewText = $(this).attr('data-review-text');
-    
+
             // Set Fetched Data
             $("#id").val(reviewId);
             $("#id_title").val(reviewTitle);
             $("#id_text").val(reviewText);
-            
+
         });
-    
+
         // Handle Delete Button Event
-        $(".delete-button").click(function(){
+        $(".delete-button").click(function () {
             reviewId = $(this).attr('data-review-id');
             deleteReview(reviewId);
-        }); 
+        });
     }); 
-    </script>
-    
+</script>
+
 
 {% endblock content %}
