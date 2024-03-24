@@ -2,8 +2,8 @@
 {% load i18n %}
 {% block head_title %}{% trans "Signup" %}{% endblock %}
 {% block content %}
-<div class="container" style="height: 70vh;">
-  <div class="card" style="width: 33.33333333%; margin: auto;margin-top: 40px;">
+<div class="container">
+  <div class="card my-4">
     <div class="card-body">
       <h3>{% trans "Sign Up" %}</h3>
       <form class="signup form-group" id="signup_form" method="post" action="{% url 'account_signup' %}">
@@ -20,4 +20,4 @@
     </div>
   </div>
 </div>
-{% endblock %}
+{% endblock content %}
