@@ -4,6 +4,12 @@ from django.db.models import Q
 from .models import Product, Category, Review
 from .forms import ReviewForm, ContactForm
 
+def home(request):
+    categories = Category.objects.all()
+    selected_query = None
+    selected_category = None
+    return render(request, 'home.html')
+
 def all_products(request):
     
     products = Product.objects.all()
