@@ -2,11 +2,16 @@
 <nav aria-label="Page navigation" class="mt-5">
     <ul class="pagination justify-content-center">
         {% if page_obj.has_previous %}
-        <li><a href="?page={{ page_obj.previous_page_number }}" class="page-link">&laquo; PREV </a></li>
+        <li class="btn btn-primary col-md-1"><a href="?page={{ page_obj.previous_page_number }}"
+                class="text-white">&laquo; PREV </a></li>
+        {% else %}
+        <li class="btn btn-secondary col-md-1"><a href="#" class="text-white">&laquo; PREV </a></li>
         {% endif %}
         {% if page_obj.has_next %}
-        <li><a href="?page={{ page_obj.next_page_number }}" class="page-link"> NEXT &raquo;</a></li>
-
+        <li class="btn btn-primary col-md-1 ml-1"><a href="?page={{ page_obj.next_page_number }}" class="text-white">
+                NEXT &raquo;</a></li>
+        {% else %}
+        <li class="btn btn-secondary col-md-1 ml-1"><a href="#" class="text-white">NEXT &raquo;</a></li>
         {% endif %}
     </ul>
 </nav>

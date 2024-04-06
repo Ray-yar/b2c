@@ -1,18 +1,30 @@
-{% for pro in products %}
-<div class="col-sm-6 col-md-4 col-lg-4 col-xl-4 my-2 rounded">
-    <div class="card">
-        {% if "placeholder" in pro.featured_photo.url %}
-        <img src="https://codeinstitute.s3.amazonaws.com/fullstack/blog/default.jpg"
-            alt="Afghan Store, Online Store, B2C">
-        {% else %}
-        <img style="width: 100%;object-fit: contain;" src=" {{ pro.featured_photo.url }}"
-            alt="Afghan Store, Online Store, B2C">
+{% for pro in product_list %}
+{% if products_page %}
+<div class="col-sm-6 col-md-6 col-lg-4 col-xl-3 my-2 rounded">
+    {% else %}
+    <div class="col-sm-6 col-md-6 col-lg-4 col-xl-2 my-2 rounded">
         {% endif %}
-        <div class="card-body">
-            <h6 class="card-title">{{pro.title}}</h6>
-            <p class="card-content text-primary">{{pro.category.title}}</p>
-            <a href="{% url 'product_details_url' pro.id %}" class="btn btn-sm btn-outline-secondary">More Details</a>
+        <div class="card">
+            {% if "placeholder" in pro.featured_photo.url %}
+            <img src="https://codeinstitute.s3.amazonaws.com/fullstack/blog/default.jpg"
+                alt="Afghan Store, Online Store, B2C">
+            {% else %}
+            <img style="width: 100%;object-fit: cover;height: 250px;" id="product_image"
+                src="{{ pro.featured_photo.url }}" alt="Afghan Store, Online Store, B2C">
+            {% endif %}
+            <div class="card-body">
+                <h5 class="card-title d-inline">{{pro.title}}</h5>
+                {% if remove_wishlist %}
+                <a class="btn btn-danger" style="float: right;" href="{% url 'remove_from_wishlist' pro.id %}"><i
+                        class="fas fa-trash"></i></a>
+                {% else %}
+                <a class="btn btn-danger" style="float: right;" href="{% url 'add_to_wishlist' pro.id %}"><i
+                        class="fas fa-heart"></i></a>
+                {% endif %}
+                <h6 class="card-title text-danger"> € {{pro.price}}</h6>
+                <p class="card-content text-primary">{{pro.category.title}}</p>
+                <a href="{% url 'product_details_url' pro.id %}" class="btn btn-primary col-md-12">More Details</a>
+            </div>
         </div>
     </div>
-</div>
-{% endfor %}
+    {% endfor %}

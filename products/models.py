@@ -2,6 +2,7 @@ from django.db import models
 from django.contrib.auth.models import User
 from cloudinary.models import CloudinaryField
 
+
 class Category(models.Model):
     title = models.CharField(max_length=128, blank=False)
     created_by = models.ForeignKey(User, on_delete=models.CASCADE, default=2)
@@ -43,3 +44,7 @@ class Review(models.Model):
 
     def __str__(self):
         return self.title
+    
+class Wishlist(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    products = models.ManyToManyField(Product)

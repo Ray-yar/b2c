@@ -2,12 +2,12 @@ body {
     -webkit-font-smoothing: auto;
     background-color: #F0F0F0;
 }
-
+/* 
 #mc_embed_signup {
     background: #fff;
     clear: left;
     font: 14px Helvetica, Arial, sans-serif;
-}
+} */
 
 .jumbotron {
     height: 265px;
@@ -121,7 +121,7 @@ body {
     font-size: 0.875rem;
     line-height: 1.5;
     color: #55595c;
-    background-color: #fff;
+    background-color: #eee;
     background-image: none;
     border: 1px solid #ccc;
     height: calc(3rem + 2px) !important;
@@ -143,11 +143,11 @@ body {
     /* } */
 }
 
-/* @media (max-width: 992px) { */
-    /* .search-sec { */
-        /* background: #1A4668; */
-    /* } */
-/* } */
+@media (max-width: 992px) {
+    #product_image{
+        height: 400px !important;
+    }
+}
 .carousel-caption{
     bottom: 20% !important;
 }
@@ -166,4 +166,47 @@ body {
     border-radius: 5px;
     padding: 10px 30px;
     border: 1px solid gray;
+}
+
+#slider_image{
+    height: 100%;
+    display: flex;
+    align-content: center;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    flex-wrap: nowrap;
+}
+
+.navbar-dark .navbar-nav .nav-link{
+    color: #007bff !important;
+}
+
+.flexslider-overlay {
+    background-color: rgba(14, 38, 64, 0.5);
+    bottom: 0;
+    content: "";
+    display: block;
+    height: 100%;
+    left: 15px;
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 98%;
+    z-index: 2;
+}
+
+.intro_featured_word {
+    text-shadow: -4px 0 black, 0 1px black, 0px 0 black, 0 0px black !important;
+}
+
+.nav-item{
+    background: white;
+    border-radius: 5px;
+    width: 140px;
+    text-align: center;
+}
+
+#wishlist_form label{
+    display: none;
 }

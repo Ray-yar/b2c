@@ -5,22 +5,43 @@
 {% endblock search %}
 
 {% block content %}
-<div class="container">
-    <figure>
-        <blockquote class="blockquote">
-          <p>Products</p>
-        </blockquote>
-        <figcaption class="blockquote-footer">
-            Explore Our Products
-        </figcaption>
-      </figure>
-    <div class="row">
-        <div class="col-12 my-3">
-            <div class="row">
-                {% include 'components/products.html' %}
+<section>
+    <div class="container-fluid my-3">
+        <div class="row">
+            <div class="col-lg-2 d-none d-lg-block">
+                <nav class="nav flex-column nav-pills mb-md-2">
+                    {% for cat in categories %}
+                    <a class="nav-link my-0 py-2 ps-3 bg-white"
+                        href="{% url 'products_url' %}?category={{ cat.id }}&q=#">{{ cat.title }}</a>
+                    {% endfor %}
+                </nav>
+            </div>
+            <div class="col-lg-10">
+                {% if product_list %}
+                <main class="card p-5 shadow-2-strong">
+                    <header class="mb-4">
+                        <h3>Explore Our Products</h3>
+                    </header>
+                    <div class="row">
+                        {% include 'components/products.html' %}
+                    </div>
+                    {% include 'components/pagination.html' %}
+                </main>
+                {% else %}
+                <div class="container-fluid m-0 p-0">
+                    <main class="card shadow-2-strong">
+                        <div class="row">
+                            <div class="col-md-12 text-center" style="padding: 360px 0px;">
+                                <p style="font-size: 30px;">
+                                    No Product Found
+                                </p>
+                            </div>
+                        </div>
+                    </main>
+                </div>
+                {% endif %}
             </div>
         </div>
     </div>
-    {% include 'components/pagination.html' %}
-</div>
+</section>
 {% endblock content %}

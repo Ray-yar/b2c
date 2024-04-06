@@ -1,6 +1,12 @@
 from django.contrib import admin
-from .models import Product, Contact, Category, Review
+from .models import Product, Contact, Category, Review, Wishlist
 from django_summernote.admin import SummernoteModelAdmin
+
+@admin.register(Wishlist)
+class WhishListAdmin(admin.ModelAdmin):
+    list_filter = ('user',)
+    search_fields = ['user',]
+    list_display = ('user',)
 
 @admin.register(Category)
 class CategoryAdmin(admin.ModelAdmin):

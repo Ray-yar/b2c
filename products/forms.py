@@ -19,3 +19,7 @@ class ReviewForm(forms.ModelForm):
             'title': forms.TextInput(attrs={'class': 'form-control'}),
             'text': forms.Textarea(attrs={'class': 'form-control'})
         }
+
+class WishlistForm(forms.Form):
+    product_id = forms.IntegerField(widget=forms.HiddenInput())
+

@@ -1,45 +1,117 @@
+{% load static %}
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <a class="navbar-brand" href="/"><strong>B2C</strong></a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-    </button>
+  <div class="col-lg-2 col-sm-4 col-4">
+    <a href="/" class="float-start">
+      <img type="png" src="{% static 'background/logo.png' %}" height="60" style="border-radius: 50px;" />
+    </a>
+  </div>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+    aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
 
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav mr-auto">
-            <li class="nav-item"><a class="nav-link" href="{% url 'products_url' %}">Shop</a></li>
-            <li class="nav-item"><a class="nav-link" href="{% url 'about_us_url' %}">About Us</a></li>
-            <li class="nav-item"><a class="nav-link" href="{% url 'contact_us_url' %}">Contact Us</a></li>
-        </ul>
-
-        <ul class="navbar-nav ml-auto">
-            <li class="nav-item">
-                {% if user.is_authenticated %}
-                {% if user.is_superuser %}
-                <a class="btn btn-primary navbar-btn mr-1" target="_blank" href="{% url 'admin:index' %}">
-                    <i class="fas fa-home"></i>
-                </a>
-                {% endif %}
-                {% endif %}
-            </li>
-            {% if user.is_authenticated %}
-            <li class="nav-item mr-1">
-                <a href="/bag/" class="btn btn-info navbar-btn"> <i class="fas fa-shopping-cart"></i></a>
-            </li>
-            {% endif %}
-            {% if user.is_authenticated %}
-            <li class="nav-item">
-                <a class="btn btn-danger navbar-btn" href="{% url 'account_logout' %}">
-                    <i class="fas fa-sign-out-alt"></i>
-                </a>
-            </li>
-            {% else %}
-            <li class="nav-item">
-                <a class="btn btn-primary navbar-btn" href="{% url 'account_login' %}">
-                    <i class="fas fa-sign-in-alt"></i>
-                </a>
-            </li>
-            {% endif %}
-        </ul>
+  <div class="d-none d-xl-flex mt-4" style="color:#007bff;">
+    <div class="media d-none d-md-flex ml-4 mr-4">
+      <i class="fa fa-envelope mr-3" style="font-size: 30px;color:#007bff;"></i>
+      <div class="media-body">
+        <h6 style="color:black">Mail Us</h6>
+        <p class="fw-400" style="color:black">
+          info@b2c.com</p>
+      </div>
     </div>
+    <div class="media d-none d-md-flex ml-4 mr-4">
+      <i class="fa fa-map-marker mr-3" style="font-size: 30px;"></i>
+      <div class="media-body">
+        <h6 style="color:black">Location</h6>
+        <p class="fw-400" style="color:black">
+          Weltone Street, Cork, Ireland </p>
+      </div>
+    </div>
+    <div class="media d-none d-md-flex ml-4 mr-4">
+      <i class="fa fa-phone mr-3" style="    font-size: 30px;"></i>
+      <div class="media-body">
+        <h6 style="color:black">Phone</h6>
+        <p class="fw-400" style="color:black;">
+          (+353) 0899-537-788 </p>
+      </div>
+    </div>
+  </div>
+  </div>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <!-- Center elements -->
+    <div class="order-lg-last col-lg-12 col-sm-12 col-12 text-right">
+      <div class="d-flex float-end" style="float: right;">
+        {% if user.is_authenticated %}
+        {% if user.is_superuser %}
+        <a href="{% url 'admin:index' %}" class="me-1 border border-secondary rounded py-3 px-4 nav-link d-flex align-items-center mr-1"
+          target="_blank"> <i class="fas fa-home m-1 me-md-2 text-secondary"></i>
+          <p class="d-none d-md-block mb-0 text-black  text-secondary">Admin Panel</p>
+        </a>
+        {% endif %}
+        {% endif %}
+        <a href="{% url 'wishlist_url' %}"
+          class="me-1 border border-danger rounded py-3 px-4 nav-link d-flex align-items-center mr-1">
+          <i class="fas fa-heart m-1 me-md-2 text-danger"></i>
+          <p class="d-none d-md-block mb-0 text-danger">Wishlist</p>
+        </a>
+        <a href="{% url 'view_bag' %}" class="border border-info rounded py-1 px-3 nav-link d-flex align-items-center mr-1"> <i
+            class="fas fa-shopping-cart m-1 me-md-2 text-info"></i>
+          <p class="d-none d-md-block mb-0 text-info">My Bag</p>
+        </a>
+        {% if user.is_authenticated %}
+        <a href="{% url 'account_logout' %}"
+          class="me-1 border rounded py-3 border-primary px-4 nav-link d-flex align-items-center mr-1"> <i
+            class="fas fa-sign-out m-1 me-md-2"></i>
+          <p class="d-none d-md-block mb-0">Sign Out</p>
+        </a>
+        {% else %}
+        <a href="{% url 'account_login' %}"
+          class="me-1 border rounded py-3 border-primary px-4 nav-link d-flex align-items-center mr-1"> <i
+            class="fas fa-user-alt m-1 me-md-2"></i>
+          <p class="d-none d-md-block mb-0">Sign in</p>
+        </a>
+        {% endif %}
+      </div>
+    </div>
+  </div>
 </nav>
+
+<!--Main Navigation-->
+<header>
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+    <!-- Container wrapper -->
+    <div class="container justify-content-center justify-content-md-between">
+      <!-- Toggle button -->
+      <button class="navbar-toggler" type="button" data-mdb-toggle="collapse" data-mdb-target="#navbarLeftAlignExample"
+        aria-controls="navbarLeftAlignExample" aria-expanded="false" aria-label="Toggle navigation">
+        <i class="fas fa-bars"></i>
+      </button>
+
+      <!-- Collapsible wrapper -->
+      <div class="collapse navbar-collapse" id="navbarLeftAlignExample">
+        <!-- Left links -->
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item mr-2">
+            <a class="nav-link" href="/"><i class="fas fa-home m-1 me-md-2"></i> Home</a>
+          </li>
+          <li class="nav-item mr-2">
+            <a class="nav-link" href="{% url 'products_url' %}"><i class="fas fa-shop m-1 me-md-2"></i> Shop</a>
+          </li>
+          <li class="nav-item mr-2">
+            <a class="nav-link" href="{% url 'about_us_url' %}"><i class="fas fa-info-circle m-1 me-md-2"></i> About
+              Us</a>
+          </li>
+          <li class="nav-item mr-2">
+            <a class="nav-link" href="{% url 'contact_us_url' %}"><i class="fas fa-address-book m-1 me-md-2"></i>
+              Contact Us</a>
+          </li>
+        </ul>
+        <!-- Left links -->
+      </div>
+    </div>
+    <!-- Container wrapper -->
+  </nav>
+  <!-- Navbar -->
+</header>

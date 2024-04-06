@@ -1,40 +1,86 @@
 from django.shortcuts import render, redirect, reverse, get_object_or_404, HttpResponse
+from django.views import generic, View
 from django.contrib import messages
 from django.db.models import Q
-from .models import Product, Category, Review
-from .forms import ReviewForm, ContactForm
+from django.contrib.auth.decorators import login_required
+from .models import Product, Category, Review, Wishlist
+from .forms import ReviewForm, ContactForm, WishlistForm
+from django.urls import reverse
+from django.http import HttpResponseRedirect
+from django.core.paginator import Paginator
+
+class ProductView(generic.ListView):
+    model = Product
+    template_name = "index.html"
+    paginate_by = 8
+
+    def get_queryset(self):
+        products = super().get_queryset()
+        selected_query = self.request.GET.get('q')
+        selected_category = self.request.GET.get('category')
+        
+        if selected_category:
+            products = products.filter(category=selected_category)
+        if selected_query:
+            queries = Q(title__icontains=selected_query) | Q(desc__icontains=selected_query)
+            products = products.filter(queries)
+        
+        return products
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['wish_list_form'] = WishlistForm()
+        context['categories'] = Category.objects.all()
+        context['selected_category'] = self.request.GET.get('category')
+        if self.request.GET.get('q'):
+            context['selected_query'] = self.request.GET.get('q')
+        else:
+            context['selected_query'] = ''
+        context['products_page'] = True
+        return context
+
 
 def home(request):
-    categories = Category.objects.all()
-    selected_query = None
+    products = Product.objects.all()[:6]
+    categories = Category.objects.all()[:17]
+    selected_query = ''
     selected_category = None
-    return render(request, 'home.html')
-
-def all_products(request):
-    
-    products = Product.objects.all()
-    selected_query = None
-    selected_category = None
-    categories = Category.objects.all()
-
-    if request.GET:
-        if 'category' in request.GET or 'q' in request.GET:
-            selected_query = request.GET['q']
-            selected_category = request.GET['category']
-            if selected_category:
-                products = products.filter(category=selected_category)
-            if selected_query:
-                queries = Q(title__icontains=selected_query) | Q(desc__icontains=selected_query)
-                products = products.filter(queries)
-
     context = {
-        'products': products,
-        'categories': categories,
-        'selected_category': selected_category,
-        'selected_query': selected_query
+        'wish_list_form': WishlistForm(),
+        'product_list': products,
+        "categories": categories,
     }
-    return render(request, 'index.html', context)
+    return render(request, 'home.html', context)
 
+@login_required
+def add_to_wishlist(request, product_id):
+    product = Product.objects.get(pk=product_id)
+    wishlist, created = Wishlist.objects.get_or_create(user=request.user)
+    wishlist.products.add(product)
+    messages.success(request, product.title + " added to your wishlist.")
+    
+    referer = request.META.get('HTTP_REFERER')
+    return HttpResponseRedirect(referer or reverse('homepage'))
+    
+@login_required
+def remove_from_wishlist(request, product_id):
+    product = Product.objects.get(pk=product_id)
+    wishlist = Wishlist.objects.get(user=request.user)
+    wishlist.products.remove(product)
+    messages.success(request, product.title + " removed from your wishlist.")
+
+    referer = request.META.get('HTTP_REFERER')
+    return HttpResponseRedirect(referer or reverse('homepage'))
+
+@login_required
+def wishlist(request):
+    try:
+        wishlist = Wishlist.objects.get(user=request.user)
+        products = wishlist.products.all()
+    except Wishlist.DoesNotExist:
+        products = []
+    
+    return render(request, 'wish_list.html', {'product_list': products, 'remove_wishlist': True})
 
 def product_detail(request, product_id):
     product = get_object_or_404(Product, pk=product_id)

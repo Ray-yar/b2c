@@ -2,8 +2,8 @@
 {% load i18n %}
 {% block content %}
 <div class="container">
-  <div class="card my-5 rounded">
-    <div class="card-body m-4">
+  <div class="card p-5 my-4 rounded">
+    <div class="card-body">
       <h3>{% trans "Sign In" %}</h3>
       <form class="login form" method="POST" id="login_form" action="{% url 'account_login' %}">
         {% csrf_token %}
@@ -11,9 +11,9 @@
         {% if redirect_field_value %}
         <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}">
         {% endif %}
-        <button class="btn btn-success active col-md-12" style="margin-bottom: 5px;" type="submit">{% trans "Sign In" %}</button>
+        <button class="btn btn-success col-md-12" style="margin-bottom: 5px;" type="submit">{% trans "Sign In" %}</button>
         <hr>
-        <a href="{% url 'account_signup' %}" class="btn btn-primary active col-md-12"  style="margin-top: 5px;" >Create Account</a>
+        <a href="{% url 'account_signup' %}" class="btn btn-primary col-md-12"  style="margin-top: 5px;" >Create Account</a>
       </form>
     </div>
   </div>

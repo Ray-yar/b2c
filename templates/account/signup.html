@@ -3,7 +3,7 @@
 {% block head_title %}{% trans "Signup" %}{% endblock %}
 {% block content %}
 <div class="container">
-  <div class="card my-4">
+  <div class="card my-4 p-5">
     <div class="card-body">
       <h3>{% trans "Sign Up" %}</h3>
       <form class="signup form-group" id="signup_form" method="post" action="{% url 'account_signup' %}">
@@ -12,10 +12,10 @@
         {% if redirect_field_value %}
         <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
         {% endif %}
-        <button class="btn btn-success active form-control mt-2" type="submit">{% trans "Sign Up" %}
+        <button class="btn btn-success form-control mt-2" type="submit">{% trans "Sign Up" %}
           &raquo;</button>
         <hr>
-        <a href="{% url 'account_login' %}" class="btn btn-primary active col-md-12" class="form-control">Sign In</a>
+        <a href="{% url 'account_login' %}" class="btn btn-primary col-md-12" class="form-control">Sign In</a>
       </form>
     </div>
   </div>

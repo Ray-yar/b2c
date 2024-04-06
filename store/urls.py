@@ -1,3 +1,4 @@
+
 """store URL Configuration
 
 The `urlpatterns` list routes URLs to views. For more information please see:
@@ -15,6 +16,7 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
+# from django.shortcuts import render
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -24,3 +26,8 @@ urlpatterns = [
     path('bag/', include('bag.urls')),
     path('summernote/', include('django_summernote.urls')),
 ]
+
+# def custom_404(request, exception):
+#     return render(request, '404.html', status=404)
+
+# handler404 = custom_404
