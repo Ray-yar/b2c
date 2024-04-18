@@ -5,7 +5,7 @@
 
       <main class="card p-3 shadow-2-strong">
         <div class="row">
-          <div class="col-lg-2 d-none d-md-block">
+          <div class="col-lg-2 d-none d-lg-block">
             <nav class="nav flex-column nav-pills mb-md-2">
               {% for cat in categories %}
                 <a class="nav-link my-0 py-2 ps-3 bg-white" href="{% url 'products_url' %}?category={{ cat.id }}&q=#">{{ cat.title }}</a>
@@ -14,7 +14,7 @@
             </nav>
           </div>
           <div class="col-lg-10">
-            <div class="card-banner h-auto p-5 bg-primary rounded-5" style="height: 720px !important; background-image: url({% static 'background/back2.jpg' %});background-size: cover;background-repeat: no-repeat;background-position: center;">
+            <div class="card-banner h-auto p-5 bg-primary rounded-5" style="height: 720px !important; background-image: url('https://res.cloudinary.com/dijdx1fv1/image/upload/v1713454173/iusfopz7zranhgc4rlam.jpg');background-size: cover;background-repeat: no-repeat;background-position: center;">
               <span class="flexslider-overlay"></span>
               <div id="slider_image">
                 <h1 class="text-white text-uppercase intro_featured_word" style="z-index: 999;">
