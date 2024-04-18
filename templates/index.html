@@ -18,7 +18,7 @@
             </div>
             <div class="col-lg-10">
                 {% if product_list %}
-                <main class="card p-5 shadow-2-strong">
+                <div class="card p-5 shadow-2-strong">
                     <header class="mb-4">
                         <h3>Explore Our Products</h3>
                     </header>
@@ -26,10 +26,10 @@
                         {% include 'components/products.html' %}
                     </div>
                     {% include 'components/pagination.html' %}
-                </main>
+                </div>
                 {% else %}
                 <div class="container-fluid m-0 p-0">
-                    <main class="card shadow-2-strong">
+                    <div class="card shadow-2-strong">
                         <div class="row">
                             <div class="col-md-12 text-center" style="padding: 360px 0px;">
                                 <p style="font-size: 30px;">
@@ -37,7 +37,7 @@
                                 </p>
                             </div>
                         </div>
-                    </main>
+                    </div>
                 </div>
                 {% endif %}
             </div>
