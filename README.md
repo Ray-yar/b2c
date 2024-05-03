@@ -58,6 +58,10 @@ According to the mentined point at the top the users can use the website with th
 ## Structure
 Simplicity, clarity and ease of navigation between pages were the main aspects for design of this website's structure.
 
+## Design and Development
+I have used figma for design of the website.
+![alt text](.docs/figma.png "Figma Design") 
+
 At the top of the page there is a recognisable type of navigation bar with website name on the left side and the navigation links.
 ### Files & Directories
 1. b2c - project directory.
