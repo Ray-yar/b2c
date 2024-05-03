@@ -3,6 +3,7 @@
 At Afghan Shopping Center, we pride ourselves on offering an extensive range of high-quality goods, from traditional Afghan handicrafts to modern fashion trends, electronics, home decor, and so much more. Our friendly staff is always on hand to assist you with any questions or special requests, ensuring that your shopping journey is nothing short of delightful.
 
 <a href="https://b2c-7a93138c14a4.herokuapp.com/" target="_blank">Visit the live project here</a>
+<a href="https://www.figma.com/file/xfddKV0FnfDPvRt9bVMmU2/Untitled?type=design&mode=design" target="_blank">Visit the live project here</a>
 
 ![alt text](.docs/responssive.png "Responsive Image") 
 
@@ -60,6 +61,7 @@ Simplicity, clarity and ease of navigation between pages were the main aspects f
 
 ## Design and Development
 I have used figma for design of the website.
+<a href="https://www.figma.com/file/xfddKV0FnfDPvRt9bVMmU2/Untitled?type=design&mode=design" target="_blank">Here is the link to figma</a>
 ![alt text](.docs/figma.png "Figma Design") 
 
 At the top of the page there is a recognisable type of navigation bar with website name on the left side and the navigation links.
