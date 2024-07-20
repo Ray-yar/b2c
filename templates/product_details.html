@@ -32,7 +32,7 @@
                             </h4>
 
                             {% if user.is_authenticated is False %}
-                            <p>Please <a href="{% url 'account_login' %}">login</a> to add "{{ product.title }}" to bag.
+                            <p>Please <a href="{% url 'account_login' %}">login</a> to add "{{ product.title }}" to your bag.</p>
                             </p>
                             {% endif %}
                         </div>
