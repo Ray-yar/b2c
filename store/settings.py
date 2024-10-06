@@ -30,7 +30,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = os.environ.get('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ['localhost', '127.0.0.1', '8000-rayyar-b2c-vp3e5eh379l.ws-eu116.gitpod.io', "b2c-5f721a629a2c.herokuapp.com"]
 
@@ -60,7 +60,7 @@ INSTALLED_APPS = [
 
 SITE_ID = 1
 
-CSRF_TRUSTED_ORIGINS = ['https://8000-rayyar-b2c-uljy38dbeqd.ws-us105.gitpod.io']
+CSRF_TRUSTED_ORIGINS = ['https://8000-rayyar-b2c-vp3e5eh379l.ws-eu116.gitpod.io', "b2c-5f721a629a2c.herokuapp.com"]
 
 ACCOUNT_AUTHENTICATION_METHOD = 'username_email'
 ACCOUNT_EMAIL_REQUIRED = True
